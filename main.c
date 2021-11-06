@@ -3,6 +3,8 @@
 #include"includes.h"
     int main() {
         system("cls");
+//-----------------------------------------Funcion FECHA-----------------------------------------------------------//
+
         //ofrecemos las opciones v1 prototipo de menu
         int opcion_seleccionada,id_buscar;
         do {
