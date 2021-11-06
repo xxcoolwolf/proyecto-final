@@ -8,6 +8,25 @@ typedef struct {
     float total;
 } clientes;
 
+//definimos las estructuras para fechas
+typedef struct {
+    int year,mont,day,hour,min,sec;
+} fechas;
+
+//definimos la estructura de los contratos
+typedef struct {
+
+/*
+el contrato debe especificar, el cliente, el o los servicio/s contratado/s, la fecha
+de firma, de inicio del servicio y de fin, el costo del o los servicios y el descuento (si es que
+accedió a uno).
+*/
+    fechas fecha_firma;
+    fechas fecha_incio;
+    fechas fecha_fin;
+    int total;
+
+} contratos;
 //definimos la estructura para guardar los servicios que selecciono el cliente
 typedef struct {
     //lo vamos a identificar por un id
