@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "estructuras.h": "c",
+        "prototipos.h": "c",
+        "stdlib.h": "c",
+        "seleccionar_servicio.c": "cpp",
+        "detalles_clientes.c": "cpp",
+        "includes.h": "c"
+    }
+}
