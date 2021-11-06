@@ -10,4 +10,5 @@
 #include"funciones/verificacion_dni.c"
 #include"funciones/modificar_clientes.c"
 #include"funciones/modificar_servicios.c"
+#include"funciones/fecha.c"
 #endif //INCLUDES_H

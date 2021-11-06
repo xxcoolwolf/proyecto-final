@@ -11,5 +11,6 @@ void seleccionar_servicio();
 void verificacion_dni();
 void modificar_clientes();
 void modificar_servicios();
+void fecha();
 
 #endif //PROTOTIPOS_C
