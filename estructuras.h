@@ -15,16 +15,10 @@ typedef struct {
 
 //definimos la estructura de los contratos
 typedef struct {
-
-/*
-el contrato debe especificar, el cliente, el o los servicio/s contratado/s, la fecha
-de firma, de inicio del servicio y de fin, el costo del o los servicios y el descuento (si es que
-accedió a uno).
-*/
     fechas fecha_firma;
     fechas fecha_incio;
     fechas fecha_fin;
-    int total;
+    int id,descuento,total;
 
 } contratos;
 //definimos la estructura para guardar los servicios que selecciono el cliente

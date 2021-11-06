@@ -17,7 +17,6 @@ void fecha() {
     time_t fecha; //lo definimos tipo time_t
     fecha=time(NULL); //le asignamos NULL
     struct tm tiempoLocal = *localtime(&fecha); //obtenemos la hora del sistema en donde se ejecuta el codigo
-    printf("\n---dia = %d mes = %d anio = %d---\n",tiempoLocal.tm_mday,tiempoLocal.tm_mon+1,tiempoLocal.tm_year+1900);
     //obtenemos year
     year = tiempoLocal.tm_year+1900;
     //obtenemos mes
