@@ -11,66 +11,72 @@ by hugo
 */
  void modificar_servicios_clientes(int id) {
 
-    FILE *archivo,*busqueda;
+    FILE *busqueda_dni,*d_servicio;
+    int opcion,dni;
+    do{
+        printf("1. Aniadir servicio\n");
+        printf("2. Desactivar servicio\n");
+        printf("3. Finalizar\n");
+        scanf("%d",&opcion);
+        switch(opcion){
+            case 1:
+                printf("asfdkiufsdahksdfjksdfjklasdf\n");
+            break;
+            case 2:
+                if((busqueda_dni=fopen("clientes/clientes.dat","rb"))!=NULL){
+                    clientes busqueda_cliente;
+                    fread(&busqueda_cliente,sizeof(busqueda_cliente),1,busqueda_dni);
+                    while(!feof(busqueda_dni)){
 
-    if((archivo=fopen("servicios/modificar_servicios.dat","r+b"))!=NULL){
-        int opcion,dni;
-        servicios_clientes cambio_servicio;
-        clientes busqueda_clietes;
-
-        do{
-            //si el ID EXISTE, entonces va a mostrar un menu en donde el cliente pueda elegir el dato que quiera modificar
-            printf("1-Añadir servicio \n");
-            printf("2-Desactivar servicio del cliente \n");  
-            printf("3-finalizar\n"); 
-            printf("Ingrese la opcion que desee: \n");
-            //ingresa la opcion que desee
-            scanf("%d",&opcion);
-            switch(opcion) {
-                case 1:
-
-                break;
-                case 2:
-
-                    if((busqueda=fopen("clientes/clientes.dat","r+b"))!=NULL){
-                        fread(&busqueda_clietes,sizeof(busqueda_clietes),1,archivo);
-                        while(!feof(busqueda)){
-                            
-                            //acá me quedé
-                            //hay que buscar el dni del cliente con el id, y luego buscar servicio para desactivarlo
-                            if(id==busqueda_clietes.id){
-                                dni=busqueda_clietes.dni;
-                            }
-                            fread(&busqueda_clietes,sizeof(busqueda_clietes),1,archivo);
-                        }
-                        fclose(busqueda);
-                    }
-                    fread(&cambio_servicio,sizeof(servicios_clientes),1,archivo);
-                    while(!feof(archivo)){
-
-                        if(dni==cambio_servicio.dni){
-                            printf("id = %d / nombre = %s\n",cambio_servicio.id_servicio,cambio_servicio.nombre_servicio);
+                        if(id==busqueda_cliente.id){
+                            dni=busqueda_cliente.dni;
                         }
 
-                        fread(&cambio_servicio,sizeof(servicios_clientes),1,archivo);
+                        fread(&busqueda_cliente,sizeof(busqueda_cliente),1,busqueda_dni);
                     }
-                break;
-            }
-        printf("Estoy dentro opcion %d\n",opcion);
+                    fclose(busqueda_dni);
+                }else
+                    printf("Error clientes/clientes.dat\n");
+
+                if((d_servicio=fopen("clientes/servicios_clientes.dat","r+b"))!=NULL){
+                    servicios_clientes des_servicio;
+                    //mostrar servicios
+                    fread(&des_servicio,sizeof(des_servicio),1,d_servicio);
+                    while(!feof(d_servicio)){
+                        if(dni==des_servicio.dni){
+                            printf("id = %d / %s / estado = %d",des_servicio.id_servicio,des_servicio.nombre_servicio,des_servicio.estado_servicio);
+                        }
+                        fread(&des_servicio,sizeof(des_servicio),1,d_servicio);
+                    }
+                    int eleccion,pos;
+                    printf("Seleccionar id: ");scanf("%d",&eleccion);
+
+                    //desactivar
+                    rewind(d_servicio);
+                    fread(&des_servicio,sizeof(des_servicio),1,d_servicio);
+                    while(!feof(d_servicio)){
+
+                        if(eleccion==des_servicio.id_servicio){
+                            des_servicio.estado_servicio=0;
+                            pos = ftell(d_servicio)-sizeof(des_servicio);
+                            fseek(d_servicio,pos,SEEK_SET);
+                            fwrite(&des_servicio,sizeof(des_servicio),1,d_servicio);
+                            fseek(d_servicio,sizeof(des_servicio),SEEK_END);
+                        }
+
+                        fread(&des_servicio,sizeof(des_servicio),1,d_servicio);
+                    }
 
 
-    //ERROR CRITICO FATAL DE BUCLE MEGA INFINITo -----------------------------------------------------------------------
 
+                    fclose(d_servicio);
+                }else
+                    printf("Error servicios/servicios_clientes.dat\n");
 
-        fseek(archivo,sizeof(clientes),SEEK_END);
+            break;
+        }
 
-        
-        } while(opcion != 3);
-
-
-        fclose(archivo);
-    }
-
+    }while(opcion!=0);
 
     
 }
