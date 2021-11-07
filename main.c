@@ -19,6 +19,7 @@
             printf("5 - Detalles Completos\n");
             printf("6 - Modificar Cliente\n");
             printf("7 - Hola Menali\n");
+            printf("8 - Listar Servicios\n");
             scanf("%d",&opcion_seleccionada);
             switch(opcion_seleccionada) {
                 case 1: registrar_clientes();
@@ -40,6 +41,9 @@
                 break;
                 case 7:
                 modificar_servicios(); 
+                break;
+                case 8:
+                listar_contrataciones();
                 break;
             }
         } while(opcion_seleccionada != 0);
