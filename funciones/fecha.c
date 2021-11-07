@@ -30,6 +30,12 @@ void fecha() {
     //obtenemos sec
     sec = tiempoLocal.tm_sec;
     //system("pause");
+    //imprimimos
+    printf("%d/%d/%d %d:%d",day,mont,year,hour,min);
+    if(hour > 12) 
+        printf("PM\n");
+    else
+        printf("AM\n");
 }
 
 #endif //FECHA_C
