@@ -6,6 +6,7 @@
 #include<string.h>
 #include"../estructuras.h"
 #include"../prototipos.h"
+#include"fecha.c"
 
 //seleccionar servicios
 /*
@@ -14,7 +15,7 @@ detalles:
 */
 void seleccionar_servicio(int *total_pagar,int dni) {
     FILE *archivo;
-    int tipo_seleccionado,servicio_seleccionado;
+    int servicio_seleccionado;
     servicios carga_servicios;
     //abrimos el archivo servicios.dat
     if((archivo = fopen("servicios/servicios.dat","rb")) != NULL) {
@@ -46,19 +47,17 @@ void seleccionar_servicio(int *total_pagar,int dni) {
                             guardar_servicios.dni = dni;
                             guardar_servicios.id_servicio = carga_servicios.id;
                             guardar_servicios.estado_servicio = 1;
+                            //--------------------- Guardamos la fecha de contratacion
+                            guardar_servicios.fecha_alta.day = day;
+                            guardar_servicios.fecha_alta.mont = mont;
+                            guardar_servicios.fecha_alta.year = year;
+                            //--------------------- Guardamos la fecha de contratacion
                             fwrite(&guardar_servicios,sizeof(servicios_clientes),1,archivo_servicios);
                             //fprintf(archivo_tx,"%s",carga_servicios.nombre);
                             fclose(archivo_servicios); 
                         }
                         //aca le asignamos el total que tendria que pagar el cliente
                         *total_pagar = *total_pagar + carga_servicios.precio;
-                        /*
-                        typedef struct {
-                            //lo vamos a identificar por un id
-                            int id,id_servicio,estado_servicio,fecha;
-                            char nombre_servicio[30];
-                        } servicios_clientes;
-                        */
                     }
                     //volvemos a leer para movernos y chequear los demas servicios
                     fread(&carga_servicios,sizeof(servicios),1,archivo);

@@ -20,7 +20,7 @@ void modificar_clientes(){
             //si el id es igual a modificar_clientes.id entonces entra al bucle
             if (id==modificar_clientes.id){
                 //muestra los datos ya cargados anteriormente
-                printf("%-10d | %-10d | %-20s | %-10lld | %-30s | %-10.2f\n",modificar_clientes.id,modificar_clientes.dni, modificar_clientes.nombre, modificar_clientes.numero,modificar_clientes.direccion,modificar_clientes.total);
+                //printf("%-10d | %-10d | %-20s | %-10lld | %-30s | %-10.2f\n",modificar_clientes.id,modificar_clientes.dni, modificar_clientes.nombre, modificar_clientes.numero,modificar_clientes.direccion,modificar_clientes.total);
                 do
                 {
                     //si el ID EXISTE, entonces va a mostrar un menu en donde el cliente pueda elegir el dato que quiera modificar
@@ -99,7 +99,8 @@ void modificar_clientes(){
     }
     else
     	printf("error\n");
-    
+
 }
+
 
 #endif //MODIFICAR_CLIENTES

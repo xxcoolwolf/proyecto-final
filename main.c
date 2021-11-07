@@ -7,7 +7,7 @@
         fecha();
         //ofrecemos las opciones v1 prototipo de menu
         int opcion_seleccionada,id_buscar;
-        do {
+        do  {
             //limpiamos pantalla 
             system("cls");
             printf("%d/%d/%d\n",day,mont,year);

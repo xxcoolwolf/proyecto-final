@@ -5,12 +5,15 @@
 #include<stdlib.h>
 #include"../estructuras.h"
 #include"../prototipos.h"
+//inclusion de la hora del sistema
+#include"fecha.c"
 
 void registrar_clientes() {
     FILE *archivo;
     int id = 0,centinela = 0, total_pagar = 0;
     //limpiamos pantalla
     system("cls");
+    printf("%d/%d/%d\n",day,mont,year);
     if((archivo = fopen("clientes/clientes.dat","ab"))) {
         clientes carga_clientes;
         //solicitamos el DNI
@@ -44,7 +47,76 @@ void registrar_clientes() {
                 generador_id(&id,nombre_archivo);
                 //cargamos el id en el struct
                 carga_clientes.id = id;
-                carga_clientes.total = total_pagar;
+//--------------------------------- GENERAR CONTRATO --------------------------------- //
+                //comenzamos con la apertura del archivo de contratos
+                FILE *archivo_contratos;
+                if((archivo_contratos = fopen("clientes/contratos.dat","ab")) != NULL) {
+                    //definimos a la estructura de contratos
+                    contratos carga_contratos;
+                    //procedemos a guardar los datos del cliente en contratos
+                    carga_contratos.id = id;
+                    carga_contratos.total = total_pagar;
+                    //realizamos los descuentos dependiendo del monto a pagar
+                    if(total_pagar >= 3000 && total_pagar <= 4000) {
+                        //descuento del 20%
+                        carga_contratos.descuento = total_pagar * 0.2;
+                    } 
+                    else 
+                    {
+                        if(total_pagar >= 4001 && total_pagar <= 6000) {
+                            //decuento del 25%
+                            carga_contratos.descuento = total_pagar * 0.25;
+                        }
+                        else
+                        {
+                            if(total_pagar > 6000) {
+                                //descuento del 30%
+                                carga_contratos.descuento = total_pagar * 0.3;
+                            }
+                        }
+                    }
+                    //guardamos el total a pagar sin descuentos
+                    carga_contratos.total = total_pagar;
+                    //------------------------- FECHA CONTRATO
+                    //guardamos la fecha de inicio de contrato
+                    carga_contratos.fecha_firma.sec = sec;
+                    carga_contratos.fecha_firma.min = min;
+                    carga_contratos.fecha_firma.day = day;
+                    carga_contratos.fecha_firma.mont = mont;
+                    carga_contratos.fecha_firma.year = year;
+
+                    //------------------------- FECHA FIN CONTRATO
+                    //llamamos a la funcion diferenciador fecha, para asignarle un descuento por 6 meses, si es que cumple alguna de las condiciones
+                    int year_fun,mont_fun,day_fun;
+                    fecha_diferenciador(year,mont,day,&year_fun,&mont_fun,&day_fun,6); //el 6 es por el descuento de 6 meses
+                    //guardamos la fecha de fin de contrato
+                    carga_contratos.fecha_fin.sec = sec;
+                    carga_contratos.fecha_fin.min = min;
+                    carga_contratos.fecha_fin.day = day_fun;
+                    carga_contratos.fecha_fin.mont = mont_fun;
+                    carga_contratos.fecha_fin.year = year_fun;
+
+                    //------------------------- FECHA FACTURA
+                    //generamos la primer fecha de factura
+                    fecha_diferenciador(year,mont,day,&year_fun,&mont_fun,&day_fun,1);
+                    carga_contratos.fecha_factura.sec = sec;
+                    carga_contratos.fecha_factura.min = min;
+                    carga_contratos.fecha_factura.day = day_fun;
+                    carga_contratos.fecha_factura.mont = mont_fun;
+                    carga_contratos.fecha_factura.year = year_fun;
+
+                    //------------------------- DEFINIMOS LOS ESTADOS
+                    carga_contratos.estado_cliente = 1;
+                    carga_contratos.estado_factura = 0;
+                    carga_contratos.estado_renovacion = 1;
+                    //realizamos la escritura en el archivo
+                    fwrite(&carga_contratos,sizeof(contratos),1,archivo_contratos);
+                //cerramos el archivo
+                fclose(archivo_contratos);
+                }
+                else
+                    printf("El archivo aun no existe\n");
+//-FIN--------------------------- GENERAR CONTRATO ------------------------------FIN- //
                 //carga en el archivo binario
                 fwrite(&carga_clientes,sizeof(clientes),1,archivo);
             }

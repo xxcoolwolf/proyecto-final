@@ -29,7 +29,7 @@ void fecha() {
     min = tiempoLocal.tm_min;
     //obtenemos sec
     sec = tiempoLocal.tm_sec;
-    system("pause");
+    //system("pause");
 }
 
 #endif //FECHA_C
