@@ -12,7 +12,7 @@ typedef struct {
 	long long int numero;
     char nombre[30],email[100],direccion[100];
 } clientes;
-
+//hola melani como estas
 //definimos la estructura de los contratos
 typedef struct {
     fechas fecha_firma,fecha_fin,fecha_factura,fecha_alta,fecha_baja;
