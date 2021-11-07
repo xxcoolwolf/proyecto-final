@@ -3,14 +3,13 @@
 #include"includes.h"
     int main() {
         system("cls");
-        //consultamos la fecha del sistema
-        fecha();
         //ofrecemos las opciones v1 prototipo de menu
         int opcion_seleccionada,id_buscar;
         do  {
             //limpiamos pantalla 
             system("cls");
-            printf("%d/%d/%d\n",day,mont,year);
+            //consultamos la fecha del sistema
+            fecha();
             printf("XONARED - A la velocidad de la luz\n");
             printf("1 - Registrar Cliente\n");
             printf("2 - Lista Rapida\n");
