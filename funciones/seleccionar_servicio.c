@@ -6,6 +6,7 @@
 #include<string.h>
 #include"../estructuras.h"
 #include"../prototipos.h"
+#include"fecha.c"
 
 //seleccionar servicios
 /*
@@ -46,6 +47,11 @@ void seleccionar_servicio(int *total_pagar,int dni) {
                             guardar_servicios.dni = dni;
                             guardar_servicios.id_servicio = carga_servicios.id;
                             guardar_servicios.estado_servicio = 1;
+                            //--------------------- Guardamos la fecha de contratacion
+                            guardar_servicios.fecha_alta.day = day;
+                            guardar_servicios.fecha_alta.mont = mont;
+                            guardar_servicios.fecha_alta.year = year;
+                            //--------------------- Guardamos la fecha de contratacion
                             fwrite(&guardar_servicios,sizeof(servicios_clientes),1,archivo_servicios);
                             //fprintf(archivo_tx,"%s",carga_servicios.nombre);
                             fclose(archivo_servicios); 
