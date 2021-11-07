@@ -27,7 +27,7 @@
                 break;
                 case 3: registrar_servicios();
                 break;
-                case 4: listar_servicios();
+                case 4: listar_servicios(1);
                 break;
                 case 5:
                 //solicitamos el ID

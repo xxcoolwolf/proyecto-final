@@ -23,7 +23,7 @@ void seleccionar_servicio(int *total_pagar,int dni) {
         do
         {   
             //listamos los servicios
-            listar_servicios();
+            listar_servicios(0); //0 mostrar menu, 1 no mostrar menu
             //luego de listar todos los servicios con el tipo, le consultamos que servicio quiere agregar 
             printf("ID del servicio o 0 (Salir)\n");
             scanf("%d",&servicio_seleccionado);

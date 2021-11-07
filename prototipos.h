@@ -5,7 +5,7 @@
 void registrar_clientes(); //funcion para registrar a los clientes en el struct
 void listar_clientes();
 void registrar_servicios();
-void listar_servicios();
+void listar_servicios(int);
 void detalles_cliente(int,int);
 void generador_id(int *,char *);
 void seleccionar_servicio();

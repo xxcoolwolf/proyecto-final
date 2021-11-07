@@ -12,7 +12,7 @@
 by Sciangula Hugo v1 28/10/21
 detalles: vamos a listar los servicios disponibles en el archivo 
 */
-void listar_servicios() {
+void listar_servicios(int menu) {
     FILE *archivo;
     int tipo_seleccionado,continuar;
     servicios carga_servicios;
@@ -36,8 +36,13 @@ void listar_servicios() {
                 fread(&carga_servicios,sizeof(servicios),1,archivo);
             }
             //volvemos a imprimir
-            printf("1 (Ver Tipos) 0 (Ok)\n");
-            scanf("%d",&continuar);
+            if(menu == 1) {
+                printf("1 (Ver Tipos) 0 (Ok)\n");
+                scanf("%d",&continuar);
+            }
+            else
+                continuar = 0;
+            
         } while(continuar != 0);    
     }
     else {
