@@ -59,7 +59,7 @@ by hugo
         printf("Estoy dentro opcion %d\n",opcion);
 
 
-    //ERROR CRITICO FATAL DE BUCLE MEGA INFINITO -----------------------------------------------------------------------
+    //ERROR CRITICO FATAL DE BUCLE MEGA INFINITo -----------------------------------------------------------------------
 
 
         fseek(archivo,sizeof(clientes),SEEK_END);
