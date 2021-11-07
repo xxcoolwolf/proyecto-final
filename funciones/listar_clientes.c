@@ -25,9 +25,27 @@ void listar_clientes() {
         if(!feof(archivo)) {
             while(!feof(archivo))
             {
-                printf("%-10d | %-10d | %-20s | %-10lld | %-30s | %-10.2f\n",carga_clientes.id,carga_clientes.dni, carga_clientes.nombre, carga_clientes.numero,carga_clientes.direccion,carga_clientes.total);
-                //lo volvemos a enviar al archivo
-                fread(&carga_clientes,sizeof(clientes),1,archivo);
+//--------------------------------- LISTADO DE CON DETALLES DE LA CUENTA --------------------------------- //
+                FILE *archivo_contratos;
+                if((archivo_contratos = fopen("clientes/contratos.dat","rb")) != NULL) {
+                    contratos listar_contratos;
+                    //ahora lo leemos a nuestro archivo
+                    fread(&listar_contratos,sizeof(contratos),1,archivo_contratos);
+                    //realizamos la busqueda de los detalles del cliente
+                    while(!feof(archivo_contratos)) {
+                        if(carga_clientes.id == listar_contratos.id) {
+                            printf("%-10d | %-10d | %-20s | %-10lld | %-30s | %-10.2f\n",carga_clientes.id,carga_clientes.dni, carga_clientes.nombre, carga_clientes.numero,carga_clientes.direccion,listar_contratos.total-listar_contratos.descuento);
+                        }
+                    //nos movemos en el archivo
+                    fread(&listar_contratos,sizeof(contratos),1,archivo_contratos);
+                    }
+                }
+                else
+                    printf("Error\n");
+                
+//-FIN--------------------------- LISTADO DE CON DETALLES DE LA CUENTA ------------------------------FIN- //
+            //nos movemos en el archivo
+            fread(&carga_clientes,sizeof(clientes),1,archivo);
             }
             //cerramos el archivo
             fclose(archivo);

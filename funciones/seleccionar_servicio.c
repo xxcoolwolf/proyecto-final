@@ -14,7 +14,7 @@ detalles:
 */
 void seleccionar_servicio(int *total_pagar,int dni) {
     FILE *archivo;
-    int tipo_seleccionado,servicio_seleccionado;
+    int servicio_seleccionado;
     servicios carga_servicios;
     //abrimos el archivo servicios.dat
     if((archivo = fopen("servicios/servicios.dat","rb")) != NULL) {
@@ -52,13 +52,6 @@ void seleccionar_servicio(int *total_pagar,int dni) {
                         }
                         //aca le asignamos el total que tendria que pagar el cliente
                         *total_pagar = *total_pagar + carga_servicios.precio;
-                        /*
-                        typedef struct {
-                            //lo vamos a identificar por un id
-                            int id,id_servicio,estado_servicio,fecha;
-                            char nombre_servicio[30];
-                        } servicios_clientes;
-                        */
                     }
                     //volvemos a leer para movernos y chequear los demas servicios
                     fread(&carga_servicios,sizeof(servicios),1,archivo);

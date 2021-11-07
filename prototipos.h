@@ -1,6 +1,7 @@
 #ifndef PROTOTIPOS_C
 #define PROTOTIPOS_C
 
+
 void registrar_clientes(); //funcion para registrar a los clientes en el struct
 void listar_clientes();
 void registrar_servicios();
@@ -12,5 +13,6 @@ void verificacion_dni();
 void modificar_clientes();
 void modificar_servicios();
 void fecha();
+void fecha_diferenciador(int, int, int, int *, int *, int *, int);
 
 #endif //PROTOTIPOS_C

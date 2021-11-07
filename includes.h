@@ -11,4 +11,5 @@
 #include"funciones/modificar_clientes.c"
 #include"funciones/modificar_servicios.c"
 #include"funciones/fecha.c"
+#include"funciones/fecha_funciones.c"
 #endif //INCLUDES_H
