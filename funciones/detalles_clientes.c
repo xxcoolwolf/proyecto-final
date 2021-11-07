@@ -30,7 +30,7 @@ void detalles_cliente(int id,int volver) {
                 printf("Email: %s\n",datos_clientes.email);
                 printf("Numero Telefonico: %lld\n\n",datos_clientes.numero);
                 
-//--------------------------------- DETALLES DE CONTRATO --------------------------------- //
+//--------------------------------- DETALLES DE CONTRATO ---------------------------------A //
 
                 printf("ESTADO DE LA CUENTA\n\n");
                 //abrimos el archivo para detallar el estado de la cuenta (lo obtenemos de contrato.dat)

@@ -70,6 +70,7 @@ void modificar_clientes(){
                         break;
                         case 4:
                             printf("ACA SE TIENE QUE MODIFICAR EL SERVICIO (actualizar)\n");
+                            modificar_servicios_clientes(id);
                         break;
                         
                     }

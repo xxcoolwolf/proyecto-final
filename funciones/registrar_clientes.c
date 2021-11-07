@@ -56,6 +56,7 @@ void registrar_clientes() {
                     //procedemos a guardar los datos del cliente en contratos
                     carga_contratos.id = id;
                     carga_contratos.total = total_pagar;
+                    carga_contratos.descuento = 0;
                     //realizamos los descuentos dependiendo del monto a pagar
                     if(total_pagar >= 3000 && total_pagar <= 4000) {
                         //descuento del 20%
@@ -74,9 +75,7 @@ void registrar_clientes() {
                                 carga_contratos.descuento = total_pagar * 0.3;
                             }
                         }
-                    }
-                    //guardamos el total a pagar sin descuentos
-                    carga_contratos.total = total_pagar;
+                    } 
                     //------------------------- FECHA CONTRATO
                     //guardamos la fecha de inicio de contrato
                     carga_contratos.fecha_firma.sec = sec;
