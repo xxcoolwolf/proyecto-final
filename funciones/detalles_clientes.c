@@ -78,7 +78,7 @@ void detalles_cliente(int id,int volver) {
                     fread(&datos_servicios_clientes,sizeof(servicios_clientes),1,archivo_servicios);
                     while(!feof(archivo_servicios)) {
                         if(datos_clientes.dni == datos_servicios_clientes.dni) {
-                            printf("%-10d | %-20s | %-10d\n",datos_servicios_clientes.id_servicio,datos_servicios_clientes.nombre_servicio,datos_servicios_clientes.estado_servicio);
+                            printf("%-10d | %-20s | %-10d | %-10d/%d/%d\n",datos_servicios_clientes.id_servicio,datos_servicios_clientes.nombre_servicio,datos_servicios_clientes.estado_servicio,datos_servicios_clientes.fecha_alta.day,datos_servicios_clientes.fecha_alta.mont,datos_servicios_clientes.fecha_alta.year);
                             //lo mandamos al final
                             //--------------- ERROR, no hay que mandarlo al final, porque tiene que listar todos los servicios que encuente, nose quien escribio esto!
                             //fseek(archivo,sizeof(clientes),SEEK_END);

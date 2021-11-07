@@ -51,6 +51,7 @@ void seleccionar_servicio(int *total_pagar,int dni) {
                             guardar_servicios.fecha_alta.day = day;
                             guardar_servicios.fecha_alta.mont = mont;
                             guardar_servicios.fecha_alta.year = year;
+                            //test
                             //--------------------- Guardamos la fecha de contratacion
                             fwrite(&guardar_servicios,sizeof(servicios_clientes),1,archivo_servicios);
                             //fprintf(archivo_tx,"%s",carga_servicios.nombre);
