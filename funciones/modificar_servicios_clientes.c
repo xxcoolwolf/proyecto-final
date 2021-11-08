@@ -25,6 +25,7 @@ by hugo
             case 2:
                 if((busqueda_dni=fopen("clientes/clientes.dat","rb"))!=NULL){
                     clientes busqueda_cliente;
+                    rewind(busqueda_dni);
                     fread(&busqueda_cliente,sizeof(busqueda_cliente),1,busqueda_dni);
                     while(!feof(busqueda_dni)){
 
@@ -38,13 +39,14 @@ by hugo
                 }else
                     printf("Error clientes/clientes.dat\n");
 
-                if((d_servicio=fopen("clientes/servicios_clientes.dat","r+b"))!=NULL){
+                if((d_servicio=fopen("clientes/servicios_clientes.dat","a+b"))!=NULL){
                     servicios_clientes des_servicio;
                     //mostrar servicios
+                    rewind(d_servicio);
                     fread(&des_servicio,sizeof(des_servicio),1,d_servicio);
                     while(!feof(d_servicio)){
                         if(dni==des_servicio.dni){
-                            printf("id = %d / %s / estado = %d",des_servicio.id_servicio,des_servicio.nombre_servicio,des_servicio.estado_servicio);
+                            printf("id = %d / %s / estado = %d\n",des_servicio.id_servicio,des_servicio.nombre_servicio,des_servicio.estado_servicio);
                         }
                         fread(&des_servicio,sizeof(des_servicio),1,d_servicio);
                     }
@@ -58,6 +60,8 @@ by hugo
 
                         if(eleccion==des_servicio.id_servicio){
                             des_servicio.estado_servicio=0;
+                            //descontar al total
+
                             pos = ftell(d_servicio)-sizeof(des_servicio);
                             fseek(d_servicio,pos,SEEK_SET);
                             fwrite(&des_servicio,sizeof(des_servicio),1,d_servicio);

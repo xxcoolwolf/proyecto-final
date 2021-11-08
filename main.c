@@ -50,7 +50,7 @@
                 listar_operaciones();
                 break;
                 case 10:
-                generador_facturas();
+                pagar_facturas();
                 break;
             }
         } while(opcion_seleccionada != 0);
