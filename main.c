@@ -18,7 +18,9 @@
             printf("5 - Detalles Completos\n");
             printf("6 - Modificar Cliente\n");
             printf("7 - Hola Menali\n");
-            printf("8 - Listar Servicios\n");
+            printf("8 - Listar Contratos de fecha a fecha\n");
+            printf("9 - Listar Operaciones\n");
+            printf("10 - Pagar Factura\n");
             scanf("%d",&opcion_seleccionada);
             switch(opcion_seleccionada) {
                 case 1: registrar_clientes();
@@ -43,6 +45,12 @@
                 break;
                 case 8:
                 listar_contrataciones();
+                break;
+                case 9:
+                listar_operaciones();
+                break;
+                case 10:
+                generador_facturas();
                 break;
             }
         } while(opcion_seleccionada != 0);

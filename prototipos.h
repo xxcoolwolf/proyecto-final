@@ -16,5 +16,6 @@ void fecha();
 void modificar_servicios_clientes(int);
 void fecha_diferenciador(int, int, int, int *, int *, int *, int);
 void listar_contrataciones();
+void listar_operaciones();
 
 #endif //PROTOTIPOS_C

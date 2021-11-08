@@ -108,6 +108,7 @@ void registrar_clientes() {
                     carga_contratos.estado_cliente = 1;
                     carga_contratos.estado_factura = 0;
                     carga_contratos.estado_renovacion = 1;
+                    carga_contratos.dni = carga_clientes.dni;
                     //realizamos la escritura en el archivo
                     fwrite(&carga_contratos,sizeof(contratos),1,archivo_contratos);
                 //cerramos el archivo

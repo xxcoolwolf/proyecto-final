@@ -16,7 +16,7 @@ typedef struct {
 //definimos la estructura de los contratos
 typedef struct {
     fechas fecha_firma,fecha_fin,fecha_factura,fecha_alta,fecha_baja;
-    int id,estado_cliente,estado_factura,estado_renovacion; 
+    int id,dni,estado_cliente,estado_factura,estado_renovacion; 
     float total,descuento,deuda;
 } contratos;
 
