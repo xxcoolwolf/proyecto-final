@@ -26,6 +26,7 @@ typedef struct {
     //lo vamos a identificar por un id
     int dni,id_servicio,estado_servicio;
     char nombre_servicio[30];
+    float precio;
 } servicios_clientes;
 
 //definimos la estructura de los servicios
