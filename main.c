@@ -51,10 +51,6 @@
                 listar_operaciones();
                 break;
                 case 10:
-<<<<<<< HEAD
-                pagar_facturas();
-=======
->>>>>>> 6cdfb7921dc250a584a98f06ea833b53ed1bf976
                 //generador_facturas();
                 break;
                 case 11:
