@@ -96,13 +96,11 @@ by Sciangula Hugo v1 07/10/2021
 //--------------------------------- MODIFICAR SERVICIO --------------------------------- //
 
                     }
-                    // printf("3BUENAAAAAAAAAAAAAAAAAAAAAAAAAAS\n");
                     //volvemos a buscar para evitar bucle
                     fread(&listar_contratos,sizeof(contratos),1,apuntador_contratos);
                 }
 
                 //cerramos el archivo contratos.dat
-                // printf("4BUENAAAAAAAAAAAAAAAAAAAAAAAAAAS\n");
                 fclose(apuntador_contratos);
             }
             else
