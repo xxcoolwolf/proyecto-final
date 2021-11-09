@@ -21,6 +21,7 @@
             printf("8 - Listar Contratos de fecha a fecha\n");
             printf("9 - Listar Operaciones\n");
             printf("10 - Pagar Factura\n");
+            printf("11 - Modificar Servicio Cliente\n");
             scanf("%d",&opcion_seleccionada);
             switch(opcion_seleccionada) {
                 case 1: registrar_clientes();
@@ -51,6 +52,12 @@
                 break;
                 case 10:
                 pagar_facturas();
+                //generador_facturas();
+                break;
+                case 11:
+                printf("Ingrese el ID del cliente: ");
+                scanf("%d",&id_buscar);
+                modificar_servicios_clientes(id_buscar);
                 break;
             }
         } while(opcion_seleccionada != 0);

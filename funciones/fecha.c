@@ -20,7 +20,7 @@ void fecha() {
     //obtenemos year
     year = tiempoLocal.tm_year+1900;
     //obtenemos mes
-    mont = tiempoLocal.tm_mon;
+    mont = tiempoLocal.tm_mon+1;
     //obtenemos day
     day = tiempoLocal.tm_mday;
     //obtenemos hour
@@ -29,6 +29,10 @@ void fecha() {
     min = tiempoLocal.tm_min;
     //obtenemos sec
     sec = tiempoLocal.tm_sec;
+
+    meses(1,0);
+
+
     //system("pause");
     //imprimimos
     printf("%d/%d/%d %d:%d",day,mont,year,hour,min);

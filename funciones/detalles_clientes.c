@@ -13,6 +13,27 @@ detalles: con las nuevas estructuas se va a proceder a solo hacer la lectura de 
 */
 
 void detalles_cliente(int id,int volver) {
+
+
+    // FILE *arch;
+    // if((arch=fopen("clientes/contratos.dat","r+b"))!=NULL){
+        
+    //     contratos l_contrato;
+
+    //     fread(&l_contrato,sizeof(contratos),1,arch);
+    //                 //buscamos el contrato por su id
+    //     while(!feof(arch)) {
+    //         if(datos_clientes.id == l_contrato.id) {
+               
+    //             descuentos(l_contrato.dni);
+    //         }    
+    //     }
+        
+        
+    //     fclose(arch);
+    // }
+
+
     FILE *archivo;
     if((archivo = fopen("clientes/clientes.dat","rb")) != NULL) {
         //limpiamos la pantalla
@@ -32,23 +53,68 @@ void detalles_cliente(int id,int volver) {
                 
 //--------------------------------- DETALLES DE CONTRATO ---------------------------------A //
 
+    
+
+
+
+
+
+
+
+
                 printf("ESTADO DE LA CUENTA\n\n");
                 //abrimos el archivo para detallar el estado de la cuenta (lo obtenemos de contrato.dat)
                 FILE *archivo_contrato;
                 float total_pagar,descuento;
-                if((archivo_contrato = fopen("clientes/contratos.dat","rb")) != NULL) {
+                if((archivo_contrato = fopen("clientes/contratos.dat","r+b")) != NULL) {
                     contratos listar_contrato;
+                    
                     //lo leemos en nuestra estructura
                     fread(&listar_contrato,sizeof(contratos),1,archivo_contrato);
                     //buscamos el contrato por su id
                     while(!feof(archivo_contrato)) {
                         if(datos_clientes.id == listar_contrato.id) {
+                            printf("datos_clientes.id = %d y listar_contrato.id = %d\n",datos_clientes.id,listar_contrato.id);
                             //mostramos los detalles de la factura
                             printf("Fecha de inicio contrato: %d/%d/%d\n",listar_contrato.fecha_firma.day,listar_contrato.fecha_firma.mont,listar_contrato.fecha_firma.year);
                             printf("Fecha de fin contrato: %d/%d/%d\n",listar_contrato.fecha_fin.day,listar_contrato.fecha_fin.mont,listar_contrato.fecha_fin.year);
                             //-------------------- Obtenemos el descuento y el total
+
+                            
+
+
+
                             total_pagar = listar_contrato.total;
+                            descuentos(listar_contrato.dni);
+                            printf("descuento = %f\n",listar_contrato.descuento);
                             descuento = listar_contrato.descuento;
+                            printf("2descuento = %f\n",descuento);
+                            // printf("2DDDDDDDDDDDDDDDDDDDDDDD\n");
+
+
+                            // if(total_pagar >= 3000 && total_pagar <= 4000) {
+                            //     //descuento del 20%
+                            //     descuento = total_pagar * 0.2;
+                            // } 
+                            // else 
+                            // {
+                            //     if(total_pagar >= 4001 && total_pagar <= 6000) {
+                            //         //decuento del 25%
+                            //         descuento = total_pagar * 0.25;
+                            //     }
+                            //     else
+                            //     {
+                            //         if(total_pagar > 6000) {
+                            //             //descuento del 30%
+                            //             descuento = total_pagar * 0.3;
+                            //         }else{
+                            //             descuento = 0;
+                            //         }
+                            //     }
+                            // } 
+
+
+
                             //-------------------- Imprimimos los detalles de las facturas
                             if(listar_contrato.estado_cliente == 0) {
                                 printf("Fecha de baja: %d/%d/%d\n",listar_contrato.fecha_baja.day,listar_contrato.fecha_baja.mont,listar_contrato.fecha_baja.year);
@@ -57,7 +123,9 @@ void detalles_cliente(int id,int volver) {
                             printf("Estado Cliente: %d\n",listar_contrato.estado_cliente);
                             printf("Estado Factura: %d\n",listar_contrato.estado_factura);
                             printf("Estado Renovacion: %d\n\n",listar_contrato.estado_renovacion);
+                            fseek(archivo_contrato,sizeof(listar_contrato),SEEK_END);
                         }
+                        // printf("2DDDDDDDDDDDDDDDDDDDDDDD\n");
                         //leemos nuevamente para movernos
                         fread(&listar_contrato,sizeof(contratos),1,archivo_contrato);    
                     }
@@ -68,7 +136,7 @@ void detalles_cliente(int id,int volver) {
                     printf("Error en la apertura de contratos.dat\n");  
 
 //-FIN--------------------------- DETALLES DE CONTRATO ------------------------------FIN- //
-
+printf("3descuento = %d\n",descuento);
                 printf("SERVICIO/S DEL CLIENTE\n\n");
                 //abrimos el archivo "servicios_clientes.dat"y buscamos los servicios que tiene
                 FILE *archivo_servicios;
@@ -88,11 +156,14 @@ void detalles_cliente(int id,int volver) {
                         fread(&datos_servicios_clientes,sizeof(servicios_clientes),1,archivo_servicios);
                     }
                     //cerramos el archivo
+                    printf("4descuento = %d\n",descuento);
                     fclose(archivo_servicios);
                     printf("\n");
                     //------------------------ Mostramos el total a pagar
                     printf("MONTOS\n\n");
                     printf("Total = $%.2f\n",total_pagar);
+                    printf("2descuento = %d\n",descuento);
+                    
                     printf("Descuento = $%.2f\n",descuento);
                     printf("Total a pagar = $%.2f\n",total_pagar-descuento);
                 }

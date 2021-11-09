@@ -15,7 +15,7 @@ typedef struct {
 //hola
 //definimos la estructura de los contratos
 typedef struct {
-    fechas fecha_firma,fecha_fin,fecha_factura,fecha_alta,fecha_baja;
+    fechas fecha_firma,fecha_fin,fecha_factura,fecha_alta,fecha_baja,i_p,f_p;
     int id,dni,estado_cliente,estado_factura,estado_renovacion; 
     float total,descuento,deuda;
 } contratos;
@@ -26,6 +26,7 @@ typedef struct {
     //lo vamos a identificar por un id
     int dni,id_servicio,estado_servicio;
     char nombre_servicio[30];
+    float precio;
 } servicios_clientes;
 
 //definimos la estructura de los servicios
@@ -35,5 +36,9 @@ typedef struct {
     char nombre[30];
     float precio;
 } servicios;
+
+typedef struct {
+    int numero_mes,dias_mes;
+} d_mes;
 
 #endif //ESTRUCTURAS_C

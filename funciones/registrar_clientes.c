@@ -9,7 +9,7 @@
 #include"fecha.c"
 
 void registrar_clientes() {
-    FILE *archivo;
+    FILE *archivo,*a2;
     int id = 0,centinela = 0, total_pagar = 0;
     //limpiamos pantalla
     system("cls");
@@ -40,11 +40,14 @@ void registrar_clientes() {
             printf("Seleccione un Servicio\n");
             //en esta llamamos a una funcion para solicitar la seleccion de los servicios
             seleccionar_servicio(&total_pagar,carga_clientes.dni);
+            // printf("FFFFFFFFFFFFFFFFFFFFFFFFFF\n");
             //ahora cargamos ese total en el registro del cliente
             //verificamos que se hayan seleccionado servicios
             if(total_pagar != 0) {
+                // printf("2FFFFFFFFFFFFFFFFFFFFFFFFFF\n");
                 //generamos id
                 generador_id(&id,nombre_archivo);
+                // printf("3FFFFFFFFFFFFFFFFFFFFFFFFFF\n");
                 //cargamos el id en el struct
                 carga_clientes.id = id;
 //--------------------------------- GENERAR CONTRATO --------------------------------- //
@@ -56,26 +59,6 @@ void registrar_clientes() {
                     //procedemos a guardar los datos del cliente en contratos
                     carga_contratos.id = id;
                     carga_contratos.total = total_pagar;
-                    carga_contratos.descuento = 0;
-                    //realizamos los descuentos dependiendo del monto a pagar
-                    if(total_pagar >= 3000 && total_pagar <= 4000) {
-                        //descuento del 20%
-                        carga_contratos.descuento = total_pagar * 0.2;
-                    } 
-                    else 
-                    {
-                        if(total_pagar >= 4001 && total_pagar <= 6000) {
-                            //decuento del 25%
-                            carga_contratos.descuento = total_pagar * 0.25;
-                        }
-                        else
-                        {
-                            if(total_pagar > 6000) {
-                                //descuento del 30%
-                                carga_contratos.descuento = total_pagar * 0.3;
-                            }
-                        }
-                    } 
                     //------------------------- FECHA CONTRATO
                     //guardamos la fecha de inicio de contrato
                     carga_contratos.fecha_firma.sec = sec;
@@ -83,7 +66,7 @@ void registrar_clientes() {
                     carga_contratos.fecha_firma.day = day;
                     carga_contratos.fecha_firma.mont = mont;
                     carga_contratos.fecha_firma.year = year;
-
+// printf("4FFFFFFFFFFFFFFFFFFFFFFFFFF\n");
                     //------------------------- FECHA FIN CONTRATO
                     //llamamos a la funcion diferenciador fecha, para asignarle un descuento por 6 meses, si es que cumple alguna de las condiciones
                     int year_fun,mont_fun,day_fun;
@@ -109,14 +92,23 @@ void registrar_clientes() {
                     carga_contratos.estado_factura = 0;
                     carga_contratos.estado_renovacion = 1;
                     carga_contratos.dni = carga_clientes.dni;
+
+                    //mauri
+                    // carga_contratos.estado_factura=10;
+// printf("5FFFFFFFFFFFFFFFFFFFFFFFFFF\n");
+
                     //realizamos la escritura en el archivo
                     fwrite(&carga_contratos,sizeof(contratos),1,archivo_contratos);
+
                 //cerramos el archivo
                 fclose(archivo_contratos);
                 }
                 else
                     printf("El archivo aun no existe\n");
 //-FIN--------------------------- GENERAR CONTRATO ------------------------------FIN- //
+// printf("5.5FFFFFFFFFFFFFFFFFFFFFFFFFF\n");
+                descuentos(carga_clientes.dni);
+// printf("6FFFFFFFFFFFFFFFFFFFFFFFFFF\n");
                 //carga en el archivo binario
                 fwrite(&carga_clientes,sizeof(clientes),1,archivo);
             }
@@ -134,6 +126,7 @@ void registrar_clientes() {
           //en caso de que el dni ya este registrado, lo redirecciona a modificaciones
           modificar_clientes();
         }
+        // printf("7FFFFFFFFFFFFFFFFFFFFFFFFFF\n");
     }
     else
         printf("Error\n");

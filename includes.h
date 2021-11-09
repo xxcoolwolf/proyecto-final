@@ -15,5 +15,8 @@
 #include"funciones/fecha_funciones.c"
 #include"funciones/listar_contrataciones.c"
 #include"funciones/listar_operaciones.c"
+#include"funciones/pagar_facturas.c"
+#include"funciones/dias_meses.c"
+#include"funciones/descuentos.c"
 
 #endif //INCLUDES_H

@@ -47,6 +47,10 @@ void seleccionar_servicio(int *total_pagar,int dni) {
                             guardar_servicios.dni = dni;
                             guardar_servicios.id_servicio = carga_servicios.id;
                             guardar_servicios.estado_servicio = 1;
+                            
+                            //----------------------------- guaramos el precio del servicio
+                            guardar_servicios.precio = carga_servicios.precio;
+
                             //--------------------- Guardamos la fecha de contratacion
                             guardar_servicios.fecha_alta.day = day;
                             guardar_servicios.fecha_alta.mont = mont;
@@ -72,6 +76,7 @@ void seleccionar_servicio(int *total_pagar,int dni) {
         printf("Error\n");
     //pausamos pantalla
     system("pause");
+    printf("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n");
 }
 
 #endif //SELECCIONAR_SERVICIO

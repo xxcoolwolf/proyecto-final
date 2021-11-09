@@ -7,82 +7,150 @@
 #include"../estructuras.h"
 #include"../prototipos.h"
 /*
-by hugo
+by Sciangula Hugo v1 07/10/2021
 */
  void modificar_servicios_clientes(int id) {
 
-    FILE *busqueda_dni,*d_servicio;
-    int opcion,dni;
-    do{
-        printf("1. Aniadir servicio\n");
+    FILE *apuntador_contratos,*apuntador_servicios;
+    int opcion,id_desactivar,centinela_descontar = 0,total_descontar = 0;
+    do {
+        printf("1. Agregar servicio/s\n");
         printf("2. Desactivar servicio\n");
-        printf("3. Finalizar\n");
+        printf("0. Finalizar\n");
         scanf("%d",&opcion);
-        switch(opcion){
-            case 1:
-                printf("asfdkiufsdahksdfjksdfjklasdf\n");
-            break;
-            case 2:
-                if((busqueda_dni=fopen("clientes/clientes.dat","rb"))!=NULL){
-                    clientes busqueda_cliente;
-                    rewind(busqueda_dni);
-                    fread(&busqueda_cliente,sizeof(busqueda_cliente),1,busqueda_dni);
-                    while(!feof(busqueda_dni)){
-
-                        if(id==busqueda_cliente.id){
-                            dni=busqueda_cliente.dni;
-                        }
-
-                        fread(&busqueda_cliente,sizeof(busqueda_cliente),1,busqueda_dni);
-                    }
-                    fclose(busqueda_dni);
-                }else
-                    printf("Error clientes/clientes.dat\n");
-
-                if((d_servicio=fopen("clientes/servicios_clientes.dat","a+b"))!=NULL){
-                    servicios_clientes des_servicio;
-                    //mostrar servicios
-                    rewind(d_servicio);
-                    fread(&des_servicio,sizeof(des_servicio),1,d_servicio);
-                    while(!feof(d_servicio)){
-                        if(dni==des_servicio.dni){
-                            printf("id = %d / %s / estado = %d\n",des_servicio.id_servicio,des_servicio.nombre_servicio,des_servicio.estado_servicio);
-                        }
-                        fread(&des_servicio,sizeof(des_servicio),1,d_servicio);
-                    }
-                    int eleccion,pos;
-                    printf("Seleccionar id: ");scanf("%d",&eleccion);
-
-                    //desactivar
-                    rewind(d_servicio);
-                    fread(&des_servicio,sizeof(des_servicio),1,d_servicio);
-                    while(!feof(d_servicio)){
-
-                        if(eleccion==des_servicio.id_servicio){
-                            des_servicio.estado_servicio=0;
-                            //descontar al total
-
-                            pos = ftell(d_servicio)-sizeof(des_servicio);
-                            fseek(d_servicio,pos,SEEK_SET);
-                            fwrite(&des_servicio,sizeof(des_servicio),1,d_servicio);
-                            fseek(d_servicio,sizeof(des_servicio),SEEK_END);
-                        }
-
-                        fread(&des_servicio,sizeof(des_servicio),1,d_servicio);
-                    }
-
-
-
-                    fclose(d_servicio);
-                }else
-                    printf("Error servicios/servicios_clientes.dat\n");
-
-            break;
+        //teabajamos segun la opcion seleccionada
+        if(opcion == 1) {
+            
         }
+        if(opcion == 2) {
+            if((apuntador_contratos = fopen("clientes/contratos.dat","rb")) != NULL) {
+                contratos listar_contratos;
+                //esta funcion es solo para buscar el dni, para luego poder buscar los servicios con dicho dni, y cambiarle el estatus;
+                fread(&listar_contratos,sizeof(contratos),1,apuntador_contratos)
+                ;
+                while(!feof(apuntador_contratos)) {
+                    //aca encontramos el dni de la persona
+                    if(listar_contratos.id == id) {
+//--------------------------------- LISTAR SERVICIO --------------------------------- //
+                    if((apuntador_servicios = fopen("clientes/servicios_clientes.dat","rb")) != NULL) {
+                        //preparamos la estructura
+                        servicios_clientes listar_servicios;
+                        fread(&listar_servicios,sizeof(servicios_clientes),1,apuntador_servicios);
+                        //listamos los servicios de la persona
+                        while(!feof(apuntador_servicios)) {
+                            if(listar_servicios.dni == listar_contratos.dni) {
+                                //imprimimos los servicios que dispone
+                                printf("%-10d | %-20s | %-10d | %d/%d/%-5d | %.2f\n",listar_servicios.id_servicio,listar_servicios.nombre_servicio,listar_servicios.estado_servicio,listar_servicios.fecha_alta.day,listar_servicios.fecha_alta.mont,listar_servicios.fecha_alta.year,listar_servicios.precio);
+                            }
+                            //volvemos a buscar para evitar bucle
+                            fread(&listar_servicios,sizeof(servicios_clientes),1,apuntador_servicios);
+                        }
+                        //cerramos el archivo servicios_clientes.dat
+                        fclose(apuntador_servicios);
+                    }
+                    else
+                        printf("Error apertura servicios_clientes.dat");
+//--------------------------------- LISTAR SERVICIO --------------------------------- //
 
-    }while(opcion!=0);
 
-    
+//--------------------------------- MODIFICAR SERVICIO --------------------------------- //
+                    printf("Ingrese el id del servicio a desactivar \n");
+                    scanf("%d",&id_desactivar);
+                    int posicion;
+                    if((apuntador_servicios = fopen("clientes/servicios_clientes.dat","r+b")) != NULL) {
+                        //preparamos la estructura
+                        servicios_clientes modificar_servicios;
+                        //cargamos el archivo en la estructura
+                        rewind(apuntador_servicios);
+                        fread(&modificar_servicios,sizeof(servicios_clientes),1,apuntador_servicios);
+                        while(!feof(apuntador_servicios)) {
+                            if(modificar_servicios.dni == listar_contratos.dni && modificar_servicios.id_servicio == id_desactivar) {
+                                //cambiamos el estatus del servicio a 0
+                                modificar_servicios.estado_servicio = 0;
+                                total_descontar = modificar_servicios.precio;
+                                printf("TOTAL DESCONTAR %d\n",total_descontar);
+                                system("pause");
+                                centinela_descontar = 1;
+                                //obtenemos la posicion en la que estamos
+                                posicion = ftell(apuntador_servicios) - sizeof(servicios_clientes);
+                                //ahora nos movemos hacia esa posicion desde el inicio
+                                fseek(apuntador_servicios,posicion,SEEK_SET);
+                                //y escribimos los cambios
+                                fwrite(&modificar_servicios,sizeof(servicios_clientes),1,apuntador_servicios);
+                                printf("Se desactivo correctamente el producto \n");
+                                system("pause");
+                                //lo mandamos al final
+                                fseek(apuntador_servicios,sizeof(servicios_clientes),SEEK_END);
+                            }
+                            //leemos para evitar bucle
+                            // printf("1BUENAAAAAAAAAAAAAAAAAAAAAAAAAAS\n");
+                            fread(&modificar_servicios,sizeof(servicios_clientes),1,apuntador_servicios);
+                        }
+                        //cerramos el archivo servicios_clientes.dat
+                        // printf("2BUENAAAAAAAAAAAAAAAAAAAAAAAAAAS\n");
+                        fclose(apuntador_servicios);
+                    }
+                    else
+                        printf("Error apertura servicios_clientes.dat\n");
+
+//--------------------------------- MODIFICAR SERVICIO --------------------------------- //
+
+                    }
+                    // printf("3BUENAAAAAAAAAAAAAAAAAAAAAAAAAAS\n");
+                    //volvemos a buscar para evitar bucle
+                    fread(&listar_contratos,sizeof(contratos),1,apuntador_contratos);
+                }
+
+                //cerramos el archivo contratos.dat
+                // printf("4BUENAAAAAAAAAAAAAAAAAAAAAAAAAAS\n");
+                fclose(apuntador_contratos);
+            }
+            else
+                printf("Error apaertura contratos.dar\n");
+            //fin apartura archivo
+        }//fin if == 2
+
+        //--------------------------------- REALIZAR DESCUENTO --------------------------------- //
+        if(centinela_descontar == 1) {
+            centinela_descontar = 0;
+            FILE *apuntador_modificador;
+            if((apuntador_modificador = fopen("clientes/contratos.dat","r+b")) != NULL) {
+                    contratos listar_contratos;
+                    int posicion_contrato;
+                    //esta funcion es solo para buscar el dni, para luego poder buscar los servicios con dicho dni, y cambiarle el estatus;
+                    fread(&listar_contratos,sizeof(contratos),1,apuntador_modificador);
+                    while(!feof(apuntador_modificador)) {
+                        //aca encontramos el dni de la persona
+                        if(listar_contratos.id == id) {
+                                listar_contratos.total = listar_contratos.total - total_descontar;
+                                //obtenemos la posicion en la que estamos
+                                posicion_contrato = ftell(apuntador_modificador) - sizeof(contratos);
+                                //ahora nos movemos hacia esa posicion desde el inicio
+                                fseek(apuntador_modificador,posicion_contrato,SEEK_SET);
+                                //y escribimos los cambios
+                                fwrite(&listar_contratos,sizeof(contratos),1,apuntador_modificador);
+                                printf("Se desconto correctamente del total \n");
+                                system("pause");
+                                //lo mandamos al final
+                                fseek(apuntador_modificador,sizeof(contratos),SEEK_END);
+                        }    
+                        //volvemos a leer para evitar bucle infinito    
+                        fread(&listar_contratos,sizeof(contratos),1,apuntador_modificador);
+                    }
+                //cerramos el archivo
+                fclose(apuntador_modificador);
+            }
+            else
+                printf("Error apertura contratos.dat\n");
+        }
+        printf("Estoy fuera de todo");
+
+//-FIN--------------------------- REALIZAR DESCUENTO ------------------------------FIN- //
+
+
+    } while(opcion!=0);
+
+    system("pause2");
 }
 
-#endif
+#endif //MODIFICAR_SERVICIOS_CLIENTES_C
