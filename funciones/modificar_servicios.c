@@ -8,6 +8,7 @@
 
 
 void modificar_servicios() {
+    system("cls");
     int id_servicio,seleccion;
     printf("Ingrese el id del servicio a modificar: ");scanf("%d",&id_servicio);
     FILE *archivo_servicios;
