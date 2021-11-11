@@ -1,0 +1,7 @@
+ID = 11
+ID Contrato = 12522904
+Fecha Firma = 11/11/2021
+Fecha Fin = 11/5/2022
+Total = 1200.00
+Descuento = 0.00
+Estado Cliente = 1

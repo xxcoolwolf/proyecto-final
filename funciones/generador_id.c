@@ -7,7 +7,7 @@
 #include"../estructuras.h"
 #include"../prototipos.h"
 
-//generador id
+// generador id
 
 void generador_id(int *id_generado,char *nombre_archivo) {
   FILE *generacion_id;

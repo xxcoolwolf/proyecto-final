@@ -63,7 +63,7 @@ void detalles_cliente(int id,int volver) {
 
 
                 printf("ESTADO DE LA CUENTA\n\n");
-                //abrimos el archivo para detallar el estado de la cuenta (lo obtenemos de contrato.dat)
+                //abrimos el archivo para detallar  el estado de la cuenta (lo obtenemos de contrato.dat)
                 FILE *archivo_contrato;
                 float total_pagar,descuento;
                 if((archivo_contrato = fopen("clientes/contratos.dat","r+b")) != NULL) {

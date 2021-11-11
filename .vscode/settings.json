@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "listar_contrataciones.c": "cpp"
+        "listar_contrataciones.c": "cpp",
+        "stdlib.h": "c"
     }
 }

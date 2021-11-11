@@ -41,7 +41,7 @@ void generador_txt(int id_persona)
 
     FILE *archivo_contrato;
     if((archivo_contrato=fopen("clientes/contratos.dat","rb"))!=NULL){
-        // printf("HOOOLIIIIIIIIIIIIIISSSSSSSSSS\n");
+        // printf ("HOOOLIIIIIIIIIIIIIISSSSSSSSSS\n");
         contratos busqueda_contrato;
 
         fread(&busqueda_contrato,sizeof(busqueda_contrato),1,archivo_contrato);

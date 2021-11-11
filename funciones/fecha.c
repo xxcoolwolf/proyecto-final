@@ -11,7 +11,7 @@ int year,mont,day,hour,min,sec,inicio_dia_cobro = 1,fin_dia_cobro = 10;
 
 void fecha(int centinela,int centinela2) {
     
-    time_t fecha; //lo definimos tipo time_t
+    time_t fecha; //lo definimos tipo ti me_t
     fecha=time(NULL); //le asignamos NULL
     struct tm tiempoLocal = *localtime(&fecha); //obtenemos la hora del sistema en donde se ejecuta el codigo
     //obtenemos year

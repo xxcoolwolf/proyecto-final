@@ -23,7 +23,7 @@ void listar_contrataciones() {
         contratos listar_contratos;
         fread(&listar_contratos,sizeof(contratos),1,archivo_contrataciones);
         while(!feof(archivo_contrataciones)) {
-            //-------------------------- RENOMBRAMOS
+            //----------------------- --- RENOMBRAMOS
             dfirma = listar_contratos.fecha_firma.day;
             mfirma = listar_contratos.fecha_firma.mont;
             yfirma = listar_contratos.fecha_firma.year;

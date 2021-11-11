@@ -12,7 +12,7 @@ void generador_facturas(int id,int total, int descuento) {
     FILE *ap_facturas,*ap_contratos,*ap_servicios;
     if((ap_facturas = fopen("clientes/facturas.dat","ab")) != NULL) {
         facturas e_facturas; //e_ de estructura
-        //cargamos el identificador el cliente ID
+        //cargamos el identificador el  cliente ID
         e_facturas.id = id;
         //cargamos el total a pagar
         e_facturas.estado_cliente = 1;

@@ -7,7 +7,7 @@
 #include"../prototipos.h"
 
 
-void estado_clientes(){
+void estado_clientes(){ 
     system("cls");
     int id_cliente,dni_encontrado,seleccion=0;
     printf("Ingresar el ID del cliente: ");scanf("%d",&id_cliente);
