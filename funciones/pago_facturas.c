@@ -31,7 +31,7 @@ void pago_facturas() {
                     //mostramos los detalles
                     printf("PAGAR FACTURA \n\n");
                     printf("ID Cliente = %d\n",id_buscado);
-                    printf("Fecha Proximo Pago = %d/%d/%d\n",e_facturas.fecha_proximo.day,e_facturas.fecha_proximo.mont,e_facturas.fecha_proximo.year);
+                    // printf("Fecha Proximo Pago = %d/%d/%d\n",e_facturas.fecha_proximo.day,e_facturas.fecha_proximo.mont,e_facturas.fecha_proximo.year);
                     printf("Fecha Vencimiento = %d/%d/%d\n",e_facturas.fecha_vencimiento.day,e_facturas.fecha_vencimiento.mont,e_facturas.fecha_vencimiento.year);
                     /////////////////////////////////////////////////////
                     //Aca traemos el monto total a pagar
