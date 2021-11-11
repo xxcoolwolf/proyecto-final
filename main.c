@@ -86,10 +86,13 @@
                     modificar_servicios_clientes(id_buscar);
                 break;
                 case 12:
-                    estado_cliente();
+                    estado_clientes();
                 break;
                 case 13:
                     modificar_servicios();
+                break;
+                case 14:
+                    mayor_contratacion();
                 break;
             }
         } while(opcion_seleccionada != 0);

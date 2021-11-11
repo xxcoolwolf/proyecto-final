@@ -16,14 +16,14 @@ typedef struct {
 //definimos la estructura de los contratos
 typedef struct {
     fechas fecha_firma,fecha_fin,fecha_factura,fecha_alta,fecha_baja;
-    int id,dni,estado_cliente,estado_factura,estado_renovacion; 
+    int id_contrato,id,dni,estado_cliente,estado_factura,estado_renovacion; 
     float total,descuento,deuda;
 } contratos;
 
 //definimos las estructura de las facturas
 typedef struct {
     fechas fecha_pago,fecha_proximo,fecha_vencimiento;
-    int id,estado_cliente,estado_factura; 
+    int id_contrato,id,estado_cliente,estado_factura; 
 } facturas;
 
 //definimos la  estructura para guardar los servicios que selecciono el cliente

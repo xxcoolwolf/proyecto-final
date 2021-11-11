@@ -19,7 +19,9 @@ void listar_contrataciones();
 void listar_operaciones();
 void generador_facturas(int,int,int);
 void pago_facturas();
-void estado_cliente();
+void estado_clientes();
 void puesto(int *);
+void mayor_contratacion();
+void generador_txt(int);
 
 #endif //PROTOTIPOS_C
