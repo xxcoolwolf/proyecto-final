@@ -5,6 +5,7 @@
 typedef struct {
     int year,mont,day,hour,min,sec;
 } fechas;
+//contrato_id.txt
 
 //definimos la estructura de los clientes
 typedef struct {
@@ -12,7 +13,7 @@ typedef struct {
 	long long int numero;
     char nombre[30],email[100],direccion[100];
 } clientes;
-//hola
+
 //definimos la estructura de los contratos
 typedef struct {
     fechas fecha_firma,fecha_fin,fecha_factura,fecha_alta,fecha_baja;
