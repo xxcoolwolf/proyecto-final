@@ -1,3 +1,0 @@
-Numeros de telefono
-Modificar Servicios
-Generar tipos de servicios con nombres unicos (en un nuevo struct)
