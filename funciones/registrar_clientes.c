@@ -152,6 +152,7 @@ void registrar_clientes() {
         else
         {
           //en caso de que el dni ya este registrado, lo redirecciona a modificaciones
+          //En caso de que ya este registrado le vamos a ofrecer diferentes opciones
           modificar_clientes();
         }
     }
