@@ -176,7 +176,6 @@
             else
                 printf("Error apertura contratos.dat\n");
         }
-        printf("Estoy fuera de todo");
 
 //-FIN--------------------------- REALIZAR DESCUENTO ------------------------------FIN- //
 

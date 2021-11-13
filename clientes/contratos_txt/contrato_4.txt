@@ -1,7 +1,0 @@
-ID = 4
-ID Contrato = 11993280
-Fecha Firma = 13/11/2021
-Fecha Fin = 13/5/2022
-Total = 7845.00
-Descuento = 2353.50
-Estado Cliente = 1

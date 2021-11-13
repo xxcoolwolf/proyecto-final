@@ -1,7 +1,7 @@
 ID = 1
-ID Contrato = 2031808
+ID Contrato = 1
 Fecha Firma = 13/11/2021
 Fecha Fin = 13/5/2022
-Total = 2700.00
-Descuento = 0.00
+Total = 4000.00
+Descuento = 800.00
 Estado Cliente = 1

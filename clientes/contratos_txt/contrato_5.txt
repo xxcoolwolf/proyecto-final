@@ -1,7 +1,0 @@
-ID = 5
-ID Contrato = 6684864
-Fecha Firma = 13/11/2021
-Fecha Fin = 13/5/2022
-Total = 3845.00
-Descuento = 769.00
-Estado Cliente = 1

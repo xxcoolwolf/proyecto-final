@@ -1,7 +1,7 @@
 ID = 2
-ID Contrato = 11534528
+ID Contrato = 2
 Fecha Firma = 13/11/2021
 Fecha Fin = 13/5/2022
-Total = 5845.00
-Descuento = 1461.25
+Total = 4000.00
+Descuento = 800.00
 Estado Cliente = 1

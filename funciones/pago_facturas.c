@@ -44,9 +44,9 @@ void pago_facturas() {
                                 e_contratos.descuento = realizar_descuento(total_pagar);
                                 descuento = e_contratos.descuento;
                                 centinela_activo = 1;
-                                fseek(&e_contratos,sizeof(e_contratos)*(-1),SEEK_CUR);
+                                fseek(ap_contratos,sizeof(e_contratos)*(-1),SEEK_CUR);
                                 fwrite(&e_contratos,sizeof(e_contratos),1,ap_contratos);
-                                fseek(&e_contratos,sizeof(e_contratos),SEEK_END);
+                                fseek(ap_contratos,sizeof(e_contratos),SEEK_END);
                             }
                             else
                             {
