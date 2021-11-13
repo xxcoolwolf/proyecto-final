@@ -87,6 +87,7 @@ void detalles_cliente(int id,int volver) {
                             total_pagar = listar_contrato.total;
                             //descuentos(listar_contrato.dni);
                             // printf("descuento = %f\n",listar_contrato.descuento);
+                            listar_contrato.descuento=realizar_descuento(total_pagar);
                             descuento = listar_contrato.descuento;
                             // printf("2descuento = %f\n",descuento);
                             // printf("2DDDDDDDDDDDDDDDDDDDDDDD\n");
@@ -123,6 +124,8 @@ void detalles_cliente(int id,int volver) {
                             printf("Estado Cliente: %d\n",listar_contrato.estado_cliente);
                             printf("Estado Factura: %d\n",listar_contrato.estado_factura);
                             printf("Estado Renovacion: %d\n\n",listar_contrato.estado_renovacion);
+                            fseek(archivo_contrato,sizeof(listar_contrato)*(-1),SEEK_CUR);
+                            fwrite(&listar_contrato,sizeof(listar_contrato),1,archivo_contrato);
                             fseek(archivo_contrato,sizeof(listar_contrato),SEEK_END);
                         }
                         // printf("2DDDDDDDDDDDDDDDDDDDDDDD\n");

@@ -1,7 +1,0 @@
-ID = 10
-id_contrato = 11474328
-fecha_firma = 11/11/2021
-fecha_fin = 11/5/2022
-total = 3845.00
-descuento = 769.00
-estado_cliente = 1

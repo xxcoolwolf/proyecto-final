@@ -23,19 +23,20 @@
             printf("4 - Listar Servicios\n");
             printf("5 - Detalles Completos\n");
             printf("6 - Modificar Cliente\n");
-            printf("7 - Hola Menali\n");
+            printf("7 - Modificar Propriedades Servicio\n");
             printf("8 - Listar Contratos de fecha a fecha\n");
             printf("9 - Listar Operaciones\n");
             printf("10 - Pagar Factura\n");
-            printf("11 - Modificar Servicio Cliente\n");
-            printf("12 - Modificar Estado Cliete\n");
-            printf("13 - Modificar Propriedades Servicio\n");
+            printf("11 - Modificar Estado Cliete\n");
+            printf("12 - Servicio Mas Contratado\n");
             printf(">> ");
             scanf("%d",&opcion_seleccionada);
             switch(opcion_seleccionada) {
                 if(puestos==1){
                     case 111:
                         do{
+                            system("cls");
+                            fecha(0,1);
                             printf("1 - Fecha actual\n");
                             printf("2 - Modificar Fecha\n");
                             printf("3 - Atras\n");
@@ -46,6 +47,8 @@
                                 fecha(1,0);
                             break;
                             case 2:
+                                system("cls");
+                                fecha(0,1);
                                 printf("Introducir fecha actual (dd mm yy): ");scanf("%d %d %d",&day,&mont,&year);
                             break;
                         }
@@ -81,23 +84,12 @@
                     pago_facturas();
                 break;
                 case 11:
-                    printf("Ingrese el ID del cliente: ");
-                    scanf("%d",&id_buscar);
-                    modificar_servicios_clientes(id_buscar);
-                break;
-                case 12:
                     estado_clientes();
                 break;
-                case 13:
-                    modificar_servicios();
-                break;
-<<<<<<< HEAD
-                case 14: 
-                
-=======
-                case 14:
+                case 12:
                     mayor_contratacion();
->>>>>>> 098e52191526c9c76e7a11f3098913e395604a2a
+                break;
+                case 13:
                 break;
             }
         } while(opcion_seleccionada != 0);

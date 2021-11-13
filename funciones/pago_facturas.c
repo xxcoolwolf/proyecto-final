@@ -36,14 +36,18 @@ void pago_facturas() {
                     /////////////////////////////////////////////////////
                     //Aca traemos el monto total a pagar
                     FILE *ap_contratos;
-                    if((ap_contratos = fopen("clientes/contratos.dat","rb")) != NULL) {
+                    if((ap_contratos = fopen("clientes/contratos.dat","r+b")) != NULL) {
                         contratos e_contratos;
                         fread(&e_contratos,sizeof(contratos),1,ap_contratos);
                         while(!feof(ap_contratos)) {
                             //buscamos al cliente
                             if(e_contratos.id == id_buscado) {
                                 total_pagar = e_contratos.total;
+                                e_contratos.descuento = realizar_descuento(total_pagar);
                                 descuento = e_contratos.descuento;
+                                fseek(&e_contratos,sizeof(e_contratos)*(-1),SEEK_CUR);
+                                fwrite(&e_contratos,sizeof(e_contratos),1,ap_contratos);
+                                fseek(&e_contratos,sizeof(e_contratos),SEEK_END);
                             }
                             //volvemos a avanzar para evitar el bucle
                             fread(&e_contratos,sizeof(contratos),1,ap_contratos);

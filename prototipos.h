@@ -23,5 +23,6 @@ void estado_clientes();
 void puesto(int *);
 void mayor_contratacion();
 void generador_txt(int);
+float realizar_descuento(float);
 
 #endif //PROTOTIPOS_C

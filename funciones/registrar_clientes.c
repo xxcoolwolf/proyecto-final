@@ -10,7 +10,7 @@
 
 void registrar_clientes() {
     FILE *archivo;
-    int id = 0,centinela = 0, total_pagar = 0, descuento = 0;
+    int id = 0,centinela = 0, total_pagar = 0, descuento_realizado = 0;
     //limpiamos pantalla
     system("cls");
     //mostramos la fecha actual
@@ -65,31 +65,41 @@ void registrar_clientes() {
                     carga_contratos.id = id;
                     carga_contratos.total = total_pagar;
                     carga_contratos.descuento = 0;
-                    //realizamos los descuentos dependiendo del monto a pagar
-                    if(total_pagar >= 3000 && total_pagar <= 4000) {
-                        //descuento del 20%
-                        carga_contratos.descuento = total_pagar * 0.2;
-                        //guardamos estos parametros para luego mandarlos a la generacion de factura
-                        descuento = carga_contratos.descuento;
-                    } 
-                    else 
-                    {
-                        if(total_pagar >= 4001 && total_pagar <= 6000) {
-                            //decuento del 25%
-                            carga_contratos.descuento = total_pagar * 0.25;
-                            //guardamos estos parametros para luego mandarlos a la generacion de factura
-                            descuento = carga_contratos.descuento;
-                        }
-                        else
-                        {
-                            if(total_pagar > 6000) {
-                                //descuento del 30%
-                                carga_contratos.descuento = total_pagar * 0.3;
-                                //guardamos estos parametros para luego mandarlos a la generacion de factura
-                                descuento = carga_contratos.descuento;
-                            }
-                        }
-                    } 
+
+
+
+                    // //realizamos los descuentos dependiendo del monto a pagar
+                    // if(total_pagar >= 3000 && total_pagar <= 4000) {
+                    //     //descuento del 20%
+                    //     carga_contratos.descuento = total_pagar * 0.2;
+                    //     //guardamos estos parametros para luego mandarlos a la generacion de factura
+                    //     descuento = carga_contratos.descuento;
+                    // } 
+                    // else 
+                    // {
+                    //     if(total_pagar >= 4001 && total_pagar <= 6000) {
+                    //         //decuento del 25%
+                    //         carga_contratos.descuento = total_pagar * 0.25;
+                    //         //guardamos estos parametros para luego mandarlos a la generacion de factura
+                    //         descuento = carga_contratos.descuento;
+                    //     }
+                    //     else
+                    //     {
+                    //         if(total_pagar > 6000) {
+                    //             //descuento del 30%
+                    //             carga_contratos.descuento = total_pagar * 0.3;
+                    //             //guardamos estos parametros para luego mandarlos a la generacion de factura
+                    //             descuento = carga_contratos.descuento;
+                    //         }
+                    //     }
+                    // } 
+                    carga_contratos.descuento=realizar_descuento(total_pagar);
+                    descuento_realizado= carga_contratos.descuento;
+                    printf("Total = %d\n",total_pagar);
+                    printf("Descuento = %d\n",descuento_realizado);
+                    system("pause");
+
+
                     //------------------------- FECHA CONTRATO
                     //guardamos la fecha de inicio de contrato
                     carga_contratos.fecha_firma.sec = sec;
@@ -150,7 +160,7 @@ void registrar_clientes() {
 //--------------------------------- GENERAMOS LA FACTURA DEL CLIENTE --------------------------------- //
 
             //llamamos a la funcion de generacion de factura
-            generador_facturas(id,total_pagar,descuento);
+            generador_facturas(id,total_pagar,descuento_realizado);
             generador_txt(id);
 
 //-FIN--------------------------- GENERAMOS LA FACTURA DEL CLIENTE ------------------------------FIN- //

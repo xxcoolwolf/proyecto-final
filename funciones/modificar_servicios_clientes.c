@@ -54,8 +54,7 @@
             if((apuntador_contratos = fopen("clientes/contratos.dat","rb")) != NULL) {
                 contratos listar_contratos;
                 //esta funcion es solo para buscar el dni, para luego poder buscar los servicios con dicho dni, y cambiarle el estatus;
-                fread(&listar_contratos,sizeof(contratos),1,apuntador_contratos)
-                ;
+                fread(&listar_contratos,sizeof(contratos),1,apuntador_contratos);
                 while(!feof(apuntador_contratos)) {
                     //aca encontramos el dni de la persona
                     if(listar_contratos.id == id) {
