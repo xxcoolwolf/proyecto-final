@@ -91,6 +91,7 @@
                 break;
                 case 13:
                 printf("Chau mauri");
+                printf("Hola Hugo");
                 break;
             }
         } while(opcion_seleccionada != 0);
