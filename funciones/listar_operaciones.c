@@ -14,6 +14,14 @@ void listar_operaciones() {
     scanf("%d %d",&m1,&y1);
     printf("Seleccione el estatus del cliente 0 Baja 1 Alta\n");
     scanf("%d",&estado);
+    printf("SERVICIOS DADOS DE ");
+    if(estado==0){
+        printf("\"BAJA\"");
+    }else{
+        printf("\"Alta\"");
+    }
+    printf(" EN %d/%d",m1,y1);
+
     FILE *archivo_operaciones;
     if((archivo_operaciones = fopen("clientes/contratos.dat","rb")) != NULL) {
         contratos listar_op;

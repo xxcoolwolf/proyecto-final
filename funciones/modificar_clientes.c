@@ -30,17 +30,19 @@ void modificar_clientes(int id_scanf){
                 //printf("%-10d | %-10d | %-20s | %-10lld | %-30s | %-10.2f\n",modificar_clientes.id,modificar_clientes.dni, modificar_clientes.nombre, modificar_clientes.numero,modificar_clientes.direccion,modificar_clientes.total);
                 do
                 {
+                    system("cls");
                     //si el ID EXISTE, entonces va a mostrar un menu en donde el cliente pueda elegir el dato que quiera modificar
-                    printf("1-modificar el email del cliente \n");
-                    printf("2-modificar el numero telefonico del cliente \n"); 
-                    printf("3-modificar la direccion del cliente \n");   
-                    printf("4-modificar los servicios del cliente \n");  
-                    printf("5-finalizar\n"); 
+                    printf("1-Modificar el email del cliente \n");
+                    printf("2-Modificar el numero telefonico del cliente \n"); 
+                    printf("3-Modificar la direccion del cliente \n");   
+                    printf("4-Modificar los servicios del cliente \n");  
+                    printf("0-Finalizar\n"); 
                     printf("ingrese la opcion que desee\n");
                     //ingresa la opcion que desee
                     scanf("%d",&opcion);
                     switch(opcion) {
                         case 1:
+                            system("cls");
                             //ingresamos el nuevo dato
                             printf("Ingrese el nuevo gmail del cliente:");
                             scanf("%s",modificar_clientes.email);
@@ -55,6 +57,7 @@ void modificar_clientes(int id_scanf){
                             idexistente=1;
                         break;
                         case 2:
+                            system("cls");
                             printf("Ingrese el nuevo numero del cliente:");
                             scanf("%lld",&modificar_clientes.numero);
                             fflush(stdin);
@@ -65,6 +68,7 @@ void modificar_clientes(int id_scanf){
                             idexistente=1;
                         break;
                         case 3:
+                            system("cls");
                             printf("Ingrese la nueva dirrecion del cliente:");
                             scanf("%s",modificar_clientes.direccion);
                             fflush(stdin);
@@ -76,6 +80,7 @@ void modificar_clientes(int id_scanf){
                             idexistente=1;
                         break;
                         case 4:
+                            system("cls");
                             modificar_servicios_clientes(id);
                         break;
                         
@@ -89,7 +94,7 @@ void modificar_clientes(int id_scanf){
             fseek(archivo,sizeof(clientes),SEEK_END);
 
             
-            } while(opcion != 5);    
+            } while(opcion != 0);    
             }
         // printf("Estoy fuera opcion %d\n",opcion);
         //leemos lo que se modifico en el archivo

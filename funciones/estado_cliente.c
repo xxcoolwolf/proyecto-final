@@ -36,7 +36,7 @@ void estado_clientes(){
             if(dni_encontrado==c_modificado.dni){
                 printf("1. Dar de Alta\n");
                 printf("2. Dar de Baja\n");
-                printf("3. Atras\n");
+                printf("0. Atras\n");
                 scanf("%d",&seleccion);
                 if(seleccion==1){
                     if(c_modificado.estado_cliente==1){
@@ -54,6 +54,63 @@ void estado_clientes(){
                         printf("Error: El cliente ya ha sido dado de baja anteriormente.\n");
                     }else{
                         c_modificado.estado_cliente=0;
+
+
+
+                            FILE *desactivar_servicios;
+                                int finalizar=0;
+                            if((desactivar_servicios=fopen("clientes/servicios_clientes.dat","r+b"))!=NULL){
+                                servicios_clientes borrar_servicio;
+                                while(finalizar==0){
+                                    rewind(desactivar_servicios);
+                                    fread(&borrar_servicio,sizeof(borrar_servicio),1,desactivar_servicios);
+                                    while(!feof(desactivar_servicios)){
+                                        finalizar=1;
+                                        printf("Finaliza = 1\n");
+                                        
+                                        if(borrar_servicio.dni==dni_encontrado && borrar_servicio.estado_servicio==1){
+                                            printf("Nombre = %s\n",borrar_servicio.nombre_servicio);
+                                            borrar_servicio.estado_servicio=0;
+                                            //como el servicio está desactivado, ha que descontar el precio al total
+                                            FILE *b_servicio;
+                                            if((b_servicio=fopen("servicios/servicios.dat","rb"))!=NULL){
+
+                                                servicios busqueda_servicio;
+                                                fread(&busqueda_servicio,sizeof(busqueda_servicio),1,b_servicio);
+                                                while(!feof(b_servicio)){
+
+                                                    if(busqueda_servicio.id==borrar_servicio.id_servicio){
+                                                        c_modificado.total=c_modificado.total-busqueda_servicio.precio;
+                                                    }
+
+                                                    fread(&busqueda_servicio,sizeof(busqueda_servicio),1,b_servicio);
+                                                }
+
+                                                fclose(b_servicio);
+                                            }
+
+
+                                            finalizar=0;
+                                            printf("Finaliza = 0\n");
+                                            fseek(desactivar_servicios,sizeof(borrar_servicio)*(-1),SEEK_CUR);
+                                            fwrite(&borrar_servicio,sizeof(borrar_servicio),1,desactivar_servicios);
+                                            fseek(desactivar_servicios,sizeof(borrar_servicio),SEEK_END);
+                                        }
+                                        
+                                        printf("HOLLLAAAAAAAA\n");
+                                        fread(&borrar_servicio,sizeof(borrar_servicio),1,desactivar_servicios);	
+                                    }
+                                    printf("Fuera while2\n");
+                                    system("pause");
+                                }
+                                
+                                
+                                fclose(desactivar_servicios);
+                            }
+
+
+
+
                         printf("El cliente ha sido dado de baja exitosamente.\n");
                         fseek(archivo_contrato,sizeof(c_modificado)*(-1),SEEK_CUR);
                         fwrite(&c_modificado,sizeof(c_modificado),1,archivo_contrato);

@@ -8,6 +8,7 @@
 
 void puesto(int *puesto){
     do{
+        system("cls");
         printf("1 - Administrador\n");
         printf("2 - Operario\n");
         scanf("%d",puesto);

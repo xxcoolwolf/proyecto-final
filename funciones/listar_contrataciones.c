@@ -16,6 +16,7 @@ void listar_contrataciones() {
     printf("Ingrese hasta que fecha buscar: ");
     scanf("%d %d %d",&d2,&m2,&y2);
     printf("\n");
+    
     FILE *archivo_contrataciones;
     //limpiamos la pantalla
     system("cls");

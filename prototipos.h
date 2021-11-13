@@ -24,5 +24,6 @@ void puesto(int *);
 void mayor_contratacion();
 void generador_txt(int);
 void buscador_id_dni(int, int);
+float realizar_descuento(float);
 
 #endif //PROTOTIPOS_C
