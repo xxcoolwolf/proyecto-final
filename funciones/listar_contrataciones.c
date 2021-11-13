@@ -46,9 +46,9 @@ void listar_contrataciones() {
                         }
                     }
                 }  
-            } //y2 > yfirma
-            //Error porque si pone un mes o un año inferior a la fecha de firma no entrará al if-----------------------------------------------------------------------------------------------------------
-            if((dfirma >= d1 && mfirma >= m1 && yfirma >= y1) && centinela == 1) {
+            } //y2 > yfirma 
+            //esto esta exelente
+            if(((dfirma >= d1 && mfirma >= m1 && yfirma >= y1) || (dfirma <= d1 && mfirma > m1 && yfirma >= y1)) && centinela == 1) {
                 printf("%-10d | %d/%d/%-10d | ",listar_contratos.id,listar_contratos.fecha_firma.day,listar_contratos.fecha_firma.mont,listar_contratos.fecha_firma.year); 
                 //traemos los detalles del cliente (total, nombre, estado)
                 if(listar_contratos.estado_cliente == 1) {

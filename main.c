@@ -66,7 +66,7 @@
                     detalles_cliente(id_buscar,0); 
                 break;
                 case 6:
-                    modificar_clientes(); 
+                    modificar_clientes(1); //1 (el usuario coloca el dni), != 1 (el usuario ya le envia)
                 break;
                 case 7:
                     modificar_servicios(); 
@@ -91,13 +91,8 @@
                 case 13:
                     modificar_servicios();
                 break;
-<<<<<<< HEAD
-                case 14: 
-                
-=======
                 case 14:
                     mayor_contratacion();
->>>>>>> 098e52191526c9c76e7a11f3098913e395604a2a
                 break;
             }
         } while(opcion_seleccionada != 0);

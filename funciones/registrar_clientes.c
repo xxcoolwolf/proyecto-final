@@ -7,6 +7,7 @@
 #include"../prototipos.h"
 //inclusion de la hora del sistema
 #include"fecha.c"
+#include"buscador_id_dni.c"
 
 void registrar_clientes() {
     FILE *archivo;
@@ -28,7 +29,7 @@ void registrar_clientes() {
         //si la centinela es igual a 1 significa que el dni está repetido y no entra al if
         if(centinela == 0) {
             //toma de datos
-            char nombre_archivo[30] = {"clientes/id_clientes.dat"};
+            char nombre_archivo[30] = {"clientes/id_clientes.dat"},nombre_contratos[30] = {"clientes/id_contratos.dat"};
             printf("Nombre Completo: ");
             //scanf("%s",carga_clientes.nombre);
             gets(carga_clientes.nombre);
@@ -56,12 +57,17 @@ void registrar_clientes() {
                 //cargamos el id en el struct
                 carga_clientes.id = id;
 //--------------------------------- GENERAR CONTRATO --------------------------------- //
+                //declaramos un id de contrato
+                int id_contrato = 0; 
                 //comenzamos con la apertura del archivo de contratos
                 FILE *archivo_contratos;
                 if((archivo_contratos = fopen("clientes/contratos.dat","ab")) != NULL) {
+                    //llamamos a la funcion de generacion de contratos
+                    generador_id(&id_contrato,nombre_contratos);
                     //definimos a la estructura de contratos
                     contratos carga_contratos;
                     //procedemos a guardar los datos del cliente en contratos
+                    carga_contratos.id_contrato = id_contrato;
                     carga_contratos.id = id;
                     carga_contratos.total = total_pagar;
                     carga_contratos.descuento = 0;
@@ -111,7 +117,7 @@ void registrar_clientes() {
 
                     //------------------------- FECHA FACTURA
                     //generamos la primer fecha de factura
-                    fecha_diferenciador(year,mont,day,&year_fun,&mont_fun,&day_fun,1);
+                    fecha_diferenciador(year,mont,inicio_dia_cobro,&year_fun,&mont_fun,&day_fun,1);
                     carga_contratos.fecha_factura.sec = sec;
                     carga_contratos.fecha_factura.min = min;
                     carga_contratos.fecha_factura.day = day_fun;
@@ -157,8 +163,9 @@ void registrar_clientes() {
         }
         else
         {
-          //en caso de que el dni ya este registrado, lo redirecciona a modificaciones
-          modificar_clientes();
+          //en caso de que el dni ya este registrado, le creamos un nuevo contrato con el nuevo servicio generado
+          buscador_id_dni(0,carga_clientes.dni);
+          modificar_clientes(global_id_cliente);
         }
     }
     else
