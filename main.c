@@ -90,6 +90,7 @@
                     mayor_contratacion();
                 break;
                 case 13:
+                printf("Hola Hugo");
                 break;
             }
         } while(opcion_seleccionada != 0);
