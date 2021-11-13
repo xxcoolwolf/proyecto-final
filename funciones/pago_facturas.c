@@ -8,7 +8,7 @@
 #include"fecha.c"
 
 void pago_facturas() {
-    int id_buscado,opcion,no_pagado = 0,total_pagar = 0,descuento = 0;
+    int id_buscado,opcion,no_pagado = 0,total_pagar = 0,descuento = 0,centinela_activo = 0;
     system("cls");
     printf("Ingrese el id de la cuenta\n");
     scanf("%d",&id_buscado);
@@ -31,8 +31,6 @@ void pago_facturas() {
                     //mostramos los detalles
                     printf("PAGAR FACTURA \n\n");
                     printf("ID Cliente = %d\n",id_buscado);
-                    // printf("Fecha Proximo Pago = %d/%d/%d\n",e_facturas.fecha_proximo.day,e_facturas.fecha_proximo.mont,e_facturas.fecha_proximo.year);
-                    printf("Fecha Vencimiento = %d/%d/%d\n",e_facturas.fecha_vencimiento.day,e_facturas.fecha_vencimiento.mont,e_facturas.fecha_vencimiento.year);
                     /////////////////////////////////////////////////////
                     //Aca traemos el monto total a pagar
                     FILE *ap_contratos;
@@ -41,13 +39,22 @@ void pago_facturas() {
                         fread(&e_contratos,sizeof(contratos),1,ap_contratos);
                         while(!feof(ap_contratos)) {
                             //buscamos al cliente
-                            if(e_contratos.id == id_buscado) {
+                            if(e_contratos.id == id_buscado && e_contratos.estado_cliente == 1) {
                                 total_pagar = e_contratos.total;
                                 e_contratos.descuento = realizar_descuento(total_pagar);
                                 descuento = e_contratos.descuento;
+                                centinela_activo = 1;
                                 fseek(&e_contratos,sizeof(e_contratos)*(-1),SEEK_CUR);
                                 fwrite(&e_contratos,sizeof(e_contratos),1,ap_contratos);
                                 fseek(&e_contratos,sizeof(e_contratos),SEEK_END);
+                            }
+                            else
+                            {
+                                // en caso de que se haya dado de baja
+                                if(e_contratos.id == id_buscado && e_contratos.estado_cliente == 0) {
+                                    centinela_activo = 0;
+                                    no_pagado = 0;
+                                }
                             }
                             //volvemos a avanzar para evitar el bucle
                             fread(&e_contratos,sizeof(contratos),1,ap_contratos);
@@ -58,6 +65,7 @@ void pago_facturas() {
                     else
                         printf("Error de apertura contratos.dat\n");
                     /////////////////////////////////////////////////////
+                    printf("Fecha Vencimiento = %d/%d/%d\n",e_facturas.fecha_vencimiento.day,e_facturas.fecha_vencimiento.mont,e_facturas.fecha_vencimiento.year);
                     printf("Monto a Pagar = $%d\n",total_pagar-descuento);
                     //verificamos que la factura no este vencida corroborando con la fecha
                     if(e_facturas.fecha_vencimiento.day < day) {
@@ -66,8 +74,15 @@ void pago_facturas() {
                         total_pagar = total_pagar * 1.2; //le hacemos un incremento del 20%
                     }
                     printf("Total a pagar = $%d\n\n",total_pagar);
-                    printf("1 (Pagar) 0 (Cancelar)\n");
-                    scanf("%d",&opcion);
+                    if(centinela_activo == 1) {
+                        printf("1 (Pagar) 0 (Cancelar)\n");
+                        scanf("%d",&opcion);
+                    }
+                    else
+                    {
+                        system("cls");
+                        printf("No podes pagar, has sido dado de baja!\n");
+                    }
                     //imprimimos mensaje de pago
                     if(opcion == 1)
                         printf("Pago realizado correctamente \n");

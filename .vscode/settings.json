@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "listar_contrataciones.c": "cpp",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "string.h": "c"
     }
 }

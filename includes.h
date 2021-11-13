@@ -21,6 +21,7 @@
 #include"funciones/puesto.c"
 #include"funciones/mayor_contratacion.c"
 #include"funciones/generador_txt.c"
+#include"funciones/buscador_id_dni.c"
 #include"funciones/realizar_descuento.c"
 
 #endif //INCLUDES_H

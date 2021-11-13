@@ -7,14 +7,21 @@
 #include"../estructuras.h"
 #include"../prototipos.h"
 
-void modificar_clientes(){
+void modificar_clientes(int id_scanf){
   FILE *archivo;
     if((archivo=fopen("clientes/clientes.dat","r+b"))){
         int id=0,opcion,pos,idexistente=0;
         clientes modificar_clientes;
-        //el usuario ingresa el id 
-        printf("Ingrese el ID del cliente que desee modificar :");
-        scanf("%d",&id);
+        //el usuario ingresa el id
+        if(id_scanf == 0) {
+            printf("Ingrese el ID del cliente que desee modificar: \n>> ");
+            scanf("%d",&id);
+        } 
+        else
+        {
+            //nosotros le asignamos a id el valor buscado
+            id = id_scanf;
+        }
         fread(&modificar_clientes,sizeof(clientes),1,archivo);
         while(!feof(archivo)) {
             //si el id es igual a modificar_clientes.id entonces entra al bucle
