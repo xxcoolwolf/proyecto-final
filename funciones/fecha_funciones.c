@@ -13,7 +13,7 @@ void fecha_diferenciador(int year, int mont, int day, int *year_ouput, int *mont
     *mont_ouput = mont + lapso;
     if(*mont_ouput > 12) {
         //significa que superamso el year
-        *mont_ouput = mont - lapso;// y si el lapso es de 12 meses?
+        *mont_ouput = *mont_ouput - lapso;// y si el lapso es de 12 meses?
         //ahora incrementamos el year
         *year_ouput = year + 1;
         *day_ouput = day;

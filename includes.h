@@ -26,5 +26,6 @@
 #include"funciones/globales.c"
 #include"funciones/listar_contratos_de_cliente.c"
 #include"funciones/devolver_estado_cliente.c"
+#include"funciones/verificador_vencimiento_contrato.c"
 
 #endif //INCLUDES_H

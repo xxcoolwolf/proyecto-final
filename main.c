@@ -8,6 +8,7 @@
         puesto(&puestos);
         fecha(1,0);
         do  {
+            verificador_vencimiento_contrato();
             //limpiamos pantalla 
             system("cls");//
             //consultamos la fecha del sistema
@@ -29,6 +30,7 @@
             printf("10 - Pagar Factura\n");
             printf("11 - Modificar Estado Cliete\n");
             printf("12 - Servicio Mas Contratado\n");
+            printf("13 - Listar Contratos del Cliente\n");
             printf(">> ");
             scanf("%d",&opcion_seleccionada);
             switch(opcion_seleccionada) {
@@ -69,7 +71,7 @@
                     detalles_cliente(id_buscar,0); 
                 break;
                 case 6:
-                    modificar_clientes(1); //1 (el usuario coloca el dni), != 1 (el usuario ya le envia)
+                    modificar_clientes(0); //1 (el usuario coloca el dni), != 1 (el usuario ya le envia)
                 break;
                 case 7:
                     modificar_servicios(); 
@@ -90,9 +92,11 @@
                     mayor_contratacion();
                 break;
                 case 13:
+                    system("cls");
                     printf("Ingrese el ID del cliente: ");
                     scanf("%d",&id_buscar);
                     listar_contratos_de_cliente(id_buscar);
+                    system("pause");
                 break;
             }
         } while(opcion_seleccionada != 0);

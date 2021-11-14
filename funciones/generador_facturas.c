@@ -6,15 +6,16 @@
 #include"../estructuras.h"
 #include"../prototipos.h"
 #include"fecha.c"
-
-
-void generador_facturas(int id,int total, int descuento) {
+//MODIFICAR POR MAURI
+//----------------------------------------------------------ACÁ
+void generador_facturas(int id,int total, int descuento, int id_contrato) {
     FILE *ap_facturas,*ap_contratos,*ap_servicios;
     if((ap_facturas = fopen("clientes/facturas.dat","ab")) != NULL) {
         facturas e_facturas; //e_ de estructura
         //cargamos el identificador el  cliente ID
         e_facturas.id = id;
         //cargamos el total a pagar
+        e_facturas.id_contrato=id_contrato;//ACÁ
         e_facturas.estado_cliente = 1;
         e_facturas.estado_factura = 0;
         //cargamos las fechas del pago

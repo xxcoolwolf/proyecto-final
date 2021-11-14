@@ -115,7 +115,7 @@ void registrar_clientes() {
                     //------------------------- FECHA FIN CONTRATO
                     //llamamos a la funcion diferenciador fecha, para asignarle un descuento por 6 meses, si es que cumple alguna de las condiciones
                     int year_fun,mont_fun,day_fun;
-                    fecha_diferenciador(year,mont,day,&year_fun,&mont_fun,&day_fun,6); //el 6 es por el descuento de 6 meses
+                    fecha_diferenciador(year,mont,day,&year_fun,&mont_fun,&day_fun,12); //el 6 es por el descuento de 6 meses
                     //guardamos la fecha de fin de contrato
                     carga_contratos.fecha_fin.sec = sec;
                     carga_contratos.fecha_fin.min = min;
@@ -165,7 +165,8 @@ void registrar_clientes() {
 //--------------------------------- GENERAMOS LA FACTURA DEL CLIENTE --------------------------------- //
 
             //llamamos a la funcion de generacion de factura
-            generador_facturas(id,total_pagar,descuento_realizado);
+            printf("id_cliente_contrato_global = %d\n",id_cliente_contrato_global);
+            generador_facturas(id,total_pagar,descuento_realizado,id_cliente_contrato_global);
             generador_txt(id);
 
 //-FIN--------------------------- GENERAMOS LA FACTURA DEL CLIENTE ------------------------------FIN- //

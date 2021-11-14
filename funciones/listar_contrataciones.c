@@ -9,6 +9,7 @@
 
 
 void listar_contrataciones() {
+    verificador_vencimiento_contrato();
     int y1,y2,m1,m2,d1,d2,dfirma,mfirma,yfirma,centinela = 0;
     system("cls");
     printf("Ingrese desde que fecha buscar: ");

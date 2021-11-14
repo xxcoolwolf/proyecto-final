@@ -17,7 +17,7 @@ void modificar_servicios_clientes(int);
 void fecha_diferenciador(int, int, int, int *, int *, int *, int);
 void listar_contrataciones();
 void listar_operaciones();
-void generador_facturas(int,int,int);
+void generador_facturas(int,int,int,int);
 void pago_facturas();
 void estado_clientes();
 void puesto(int *);
@@ -27,5 +27,5 @@ void buscador_id_dni(int, int);
 float realizar_descuento(float);
 void listar_contratos_de_cliente(int);
 void devolver_estado_cliente(int, int *);
-
+void verificador_vencimiento_contrato();
 #endif //PROTOTIPOS_C
