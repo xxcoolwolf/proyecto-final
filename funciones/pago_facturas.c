@@ -8,6 +8,7 @@
 #include"fecha.c"
 
 void pago_facturas() {
+    /*
     int id_buscado,opcion,no_pagado = 0,total_pagar = 0,descuento = 0,centinela_activo = 0;
     system("cls");
     printf("Ingrese el id de la cuenta\n");
@@ -192,6 +193,7 @@ void pago_facturas() {
     }
     //pausamos
     system("pause");
+    */
 }
 
 #endif //PAGO_FACTURAS_C

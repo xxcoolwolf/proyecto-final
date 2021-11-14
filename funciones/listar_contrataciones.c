@@ -9,6 +9,7 @@
 
 
 void listar_contrataciones() {
+    /*
     int y1,y2,m1,m2,d1,d2,dfirma,mfirma,yfirma,centinela = 0;
     system("cls");
     printf("Ingrese desde que fecha buscar: ");
@@ -67,6 +68,7 @@ void listar_contrataciones() {
     else
         printf("Error de apertura contratos.dat\n"); 
     system("pause");
+    */
 }
 
 #endif //LISTAR_CONTRATACIONES_C

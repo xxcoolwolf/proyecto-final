@@ -23,5 +23,7 @@
 #include"funciones/generador_txt.c"
 #include"funciones/buscador_id_dni.c"
 #include"funciones/realizar_descuento.c"
+#include"funciones/globales.c"
+#include"funciones/listar_contratos_de_cliente.c"
 
 #endif //INCLUDES_H

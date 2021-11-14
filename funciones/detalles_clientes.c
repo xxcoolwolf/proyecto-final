@@ -15,23 +15,6 @@ detalles: con las nuevas estructuas se va a proceder a solo hacer la lectura de 
 void detalles_cliente(int id,int volver) {
 
 
-    // FILE *arch;
-    // if((arch=fopen("clientes/contratos.dat","r+b"))!=NULL){
-        
-    //     contratos l_contrato;
-
-    //     fread(&l_contrato,sizeof(contratos),1,arch);
-    //                 //buscamos el contrato por su id
-    //     while(!feof(arch)) {
-    //         if(datos_clientes.id == l_contrato.id) {
-               
-    //             descuentos(l_contrato.dni);
-    //         }    
-    //     }
-        
-        
-    //     fclose(arch);
-    // }
 
 
     FILE *archivo;
@@ -117,11 +100,11 @@ void detalles_cliente(int id,int volver) {
 
 
                             //-------------------- Imprimimos los detalles de las facturas
-                            if(listar_contrato.estado_cliente == 0) {
+                            if(datos_clientes.estado_cliente == 0) {
                                 printf("Fecha de baja: %d/%d/%d\n",listar_contrato.fecha_baja.day,listar_contrato.fecha_baja.mont,listar_contrato.fecha_baja.year);
                             }
                             printf("Factura a pagar: %d/%d/%d\n",listar_contrato.fecha_factura.day,listar_contrato.fecha_factura.mont,listar_contrato.fecha_factura.year);
-                            printf("Estado Cliente: %d\n",listar_contrato.estado_cliente);
+                            printf("Estado Cliente: %d\n",datos_clientes.estado_cliente);
                             printf("Estado Factura: %d\n",listar_contrato.estado_factura);
                             printf("Estado Renovacion: %d\n\n",listar_contrato.estado_renovacion);
                             fseek(archivo_contrato,sizeof(listar_contrato)*(-1),SEEK_CUR);

@@ -6,6 +6,8 @@
 #include<string.h>
 #include"../estructuras.h"
 #include"../prototipos.h"
+#include"buscador_id_dni.c"
+#include"globales.c"
 
  void modificar_servicios_clientes(int id) {
 
@@ -20,8 +22,18 @@
         if(opcion == 1) {
             printf("Ingrese el DNI del cliente\n");
             scanf("%d",&dni);
-            seleccionar_servicio(&total_pagar,dni);
-             /////////////////////////////////////////////////////
+            //seleccionar_servicio(&total_pagar,dni);
+            //obtenemos el id y dni del cliente
+            buscador_id_dni(0,dni);
+            //modificamos las globales
+            id_cliente_global = global_id_cliente;
+            dni_cliente_global = global_dni_cliente;
+            centinela_global = 1;
+            centinela_modificador_global = 1;
+            //ahora llamamos a la funcion registrar cliente
+            registrar_clientes();
+            /*
+                        /////////////////////////////////////////////////////
                         //Aca traemos el monto total a pagar
                         FILE *ap_contratos;
                         if((ap_contratos = fopen("clientes/contratos.dat","r+b")) != NULL) {
@@ -48,6 +60,7 @@
                         else
                             printf("Error de apertura contratos.dat\n");
                         /////////////////////////////////////////////////////
+            */
 
         }
         if(opcion == 2) {

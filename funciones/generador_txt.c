@@ -6,33 +6,15 @@
 #include<string.h>
 #include"../estructuras.h"
 #include"../prototipos.h"
-
-// void carga_acta()
-// {
-//     FILE *p;
-//     char nomb_acta[40], num_acta[21];
-//     strcpy(nomb_acta, "acta");
-//     sprintf(num_acta, "%ld", acta.numActa);
-//     strcat(nomb_acta, num_acta);
-//     strcat(nomb_acta, "_");
-//     strcat(nomb_acta, acta.patente);
-//     strcat(nomb_acta, ".txt");
-//     if ((p = fopen(nomb_acta, "wt")) != NULL)
-//     {
-//         fprintf(p, "Nro acta: %ld\nFECHA: %d/%d/%d - HORA: %d:%d\n\nVEHICULO:\n\t- Propietario: %s\n\t- Patente: %s\n\t- Marca: %s\n\t- Modelo: %s\n\t- Tipo de vehiculo: %s\n\nTIPO INF: %s\n\nOBSERVACIONES / DESCRIPCION / MEDIDAS PREVENTIVAS / TESTIGOS:\n%s\n\nAGENTE:\n\t- Legajo: %ld\n\t- Nombre inspector: %s", acta.numActa, acta.fecha_Acta.day, acta.fecha_Acta.mon, acta.fecha_Acta.year, acta.fecha_Acta.hour, acta.fecha_Acta.min, acta.propietario, acta.patente, acta.marca, acta.modelo, acta.tipo_vehiculo, acta.tipo_infraccion, acta.observacion, acta.legajoinsp, acta.nombre_agente);
-//         fclose(p);
-//     }
-//     else
-//         printf("No fue posible realizar el acta.\n");
-// }
+#include"globales.c"
 
 void generador_txt(int id_persona)
 {
+    /*
     FILE *p;
-    
     char nombre_contrato[40], numero_id[21];
     strcpy(nombre_contrato, "clientes/contratos_txt/contrato_");
-    sprintf(numero_id, "%d",id_persona);
+    sprintf(numero_id, "%d",id_cliente_contrato_global);
     strcat(nombre_contrato, numero_id);
     strcat(nombre_contrato, ".txt");
     printf("TXT: %s------------------------------------\n",nombre_contrato);
@@ -65,6 +47,7 @@ void generador_txt(int id_persona)
         fclose(archivo_contrato);
         system("pause");
     }
+    */
 }
 
 

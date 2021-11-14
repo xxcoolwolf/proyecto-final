@@ -90,8 +90,9 @@
                     mayor_contratacion();
                 break;
                 case 13:
-                printf("Chau mauri");
-                printf("Hola Hugo");
+                    printf("Ingrese el ID del cliente: ");
+                    scanf("%d",&id_buscar);
+                    listar_contratos_de_cliente(id_buscar);
                 break;
             }
         } while(opcion_seleccionada != 0);

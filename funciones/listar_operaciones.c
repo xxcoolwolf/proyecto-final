@@ -8,6 +8,7 @@
 
 
 void listar_operaciones() {
+    /*
     int m1,y1,mfirma,yfirma, estado;
     system("cls");
     printf("Seleccione la fecha de busqueda mm/yy\n");
@@ -65,6 +66,7 @@ void listar_operaciones() {
     else
         printf("Error apertura contratos.dat\n");
     system("pause");
+    */
 }
 
 #endif //LISTAR_OPERACIONES_C
