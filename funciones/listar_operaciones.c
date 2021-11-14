@@ -30,8 +30,10 @@ void listar_operaciones() {
             //-------------------------- REASIGNAMOS
             mfirma = listar_op.fecha_firma.mont;
             yfirma = listar_op.fecha_firma.year;
+            int estado_cliente;
+            devolver_estado_cliente(listar_op.dni,&estado_cliente);
             //buscamos a los clientes que cumplan con esa fecha
-            if(m1 == mfirma && y1 == yfirma && listar_op.estado_cliente == estado) {
+            if(m1 == mfirma && y1 == yfirma && estado_cliente == estado) {
                 //-------------------------- LISTAMOS LOS SERVICIOS
                 FILE *archivo_servicios;
                 if((archivo_servicios = fopen("clientes/servicios_clientes.dat","rb")) != NULL) {

@@ -134,6 +134,7 @@ void registrar_clientes() {
 
                     //------------------------- DEFINIMOS LOS ESTADOS
                     carga_clientes.estado_cliente = 1;
+                    carga_contratos.estado_contrato = 1;
                     carga_contratos.estado_factura = 0;
                     carga_contratos.estado_renovacion = 1;
                     carga_contratos.dni = carga_clientes.dni;
