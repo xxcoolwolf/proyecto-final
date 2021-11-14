@@ -39,7 +39,9 @@ void pago_facturas() {
                         fread(&e_contratos,sizeof(contratos),1,ap_contratos);
                         while(!feof(ap_contratos)) {
                             //buscamos al cliente
-                            if(e_contratos.id == id_buscado && e_contratos.estado_cliente == 1) {
+                            int estado_cliente;
+                            devolver_estado_cliente(e_contratos.id,&estado_cliente);
+                            if(e_contratos.id == id_buscado && estado_cliente == 1) {
                                 total_pagar = e_contratos.total;
                                 e_contratos.descuento = realizar_descuento(total_pagar);
                                 descuento = e_contratos.descuento;
@@ -51,7 +53,7 @@ void pago_facturas() {
                             else
                             {
                                 // en caso de que se haya dado de baja
-                                if(e_contratos.id == id_buscado && e_contratos.estado_cliente == 0) {
+                                if(e_contratos.id == id_buscado && estado_cliente == 0) {
                                     centinela_activo = 0;
                                     no_pagado = 0;
                                 }

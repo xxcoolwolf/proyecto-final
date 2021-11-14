@@ -69,7 +69,7 @@ void estado_clientes(){
                 }else if(seleccion == 2){
                     listar_contratos_de_cliente(id_cliente);//-----------------------------
                     printf("Ingresar id del contrato deseado: ");scanf("%d",eleccion_contrato);//-----------------------------
-                    
+
                 }
             }
 
