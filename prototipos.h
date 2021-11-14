@@ -26,5 +26,6 @@ void generador_txt(int);
 void buscador_id_dni(int, int);
 float realizar_descuento(float);
 void listar_contratos_de_cliente(int);
+void devolver_estado_cliente(int, int *);
 
 #endif //PROTOTIPOS_C

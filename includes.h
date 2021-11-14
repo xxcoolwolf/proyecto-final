@@ -25,5 +25,6 @@
 #include"funciones/realizar_descuento.c"
 #include"funciones/globales.c"
 #include"funciones/listar_contratos_de_cliente.c"
+#include"funciones/devolver_estado_cliente.c"
 
 #endif //INCLUDES_H

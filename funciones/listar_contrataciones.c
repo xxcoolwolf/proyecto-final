@@ -9,7 +9,6 @@
 
 
 void listar_contrataciones() {
-    /*
     int y1,y2,m1,m2,d1,d2,dfirma,mfirma,yfirma,centinela = 0;
     system("cls");
     printf("Ingrese desde que fecha buscar: ");
@@ -49,11 +48,13 @@ void listar_contrataciones() {
                     }
                 }  
             } //y2 > yfirma 
+            int estado_cliente;
+            devolver_estado_cliente(listar_contratos.id,&estado_cliente);
             //esto esta exelente
             if(((dfirma >= d1 && mfirma >= m1 && yfirma >= y1) || (dfirma <= d1 && mfirma > m1 && yfirma >= y1)) && centinela == 1) {
                 printf("%-10d | %d/%d/%-10d | ",listar_contratos.id,listar_contratos.fecha_firma.day,listar_contratos.fecha_firma.mont,listar_contratos.fecha_firma.year); 
                 //traemos los detalles del cliente (total, nombre, estado)
-                if(listar_contratos.estado_cliente == 1) {
+                if(estado_cliente == 1) {
                     printf("Activo | ");
                 } else {
                     printf("Inactivo | ");
@@ -68,7 +69,6 @@ void listar_contrataciones() {
     else
         printf("Error de apertura contratos.dat\n"); 
     system("pause");
-    */
 }
 
 #endif //LISTAR_CONTRATACIONES_C

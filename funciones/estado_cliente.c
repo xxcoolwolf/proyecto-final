@@ -8,9 +8,8 @@
 
 
 void estado_clientes(){ 
-    /*
     system("cls");
-    int id_cliente,dni_encontrado,seleccion=0;
+    int id_cliente,dni_encontrado,seleccion=0,estado_cliente = 0;
     printf("Ingresar el ID del cliente: ");scanf("%d",&id_cliente);
 
     FILE *busqueda_dni;
@@ -21,6 +20,7 @@ void estado_clientes(){
             
             if(id_cliente == busqueda_cliente.id){
                 dni_encontrado = busqueda_cliente.dni;  
+                estado_cliente = busqueda_cliente.estado_cliente;
             }
             fread(&busqueda_cliente,sizeof(busqueda_cliente),1,busqueda_dni);
         }
@@ -34,30 +34,15 @@ void estado_clientes(){
         fread(&c_modificado,sizeof(c_modificado),1,archivo_contrato);
         while(!feof(archivo_contrato)){
             
-            if(dni_encontrado == c_modificado.dni){
-                printf("1. Dar de Alta\n");
-                printf("2. Dar de Baja\n");
+            if(dni_encontrado == c_modificado.dni && estado_cliente == 1){
+                printf("1. Dar de Baja\n");
                 printf("0. Atras\n");
                 scanf("%d",&seleccion);
                 if(seleccion == 1){
-                    if(c_modificado.estado_cliente==1){
-                        printf("Error: El cliente ya ha sido dado de alta anteriormente.\n");
-                    }else{
-                        c_modificado.estado_cliente=1;
-                        printf("El cliente ha sido dado de alta exitosamente.\n");
-                        fseek(archivo_contrato,sizeof(c_modificado)*(-1),SEEK_CUR);
-                        fwrite(&c_modificado,sizeof(c_modificado),1,archivo_contrato);
-                        fseek(archivo_contrato,sizeof(c_modificado),SEEK_END);
-                        
-                    }
-                }else if(seleccion == 2){
                     if(c_modificado.estado_cliente == 0){
                         printf("Error: El cliente ya ha sido dado de baja anteriormente.\n");
                     }else{
                         c_modificado.estado_cliente = 0;
-
-
-
                             FILE *desactivar_servicios;
                                 int finalizar=0;
                             if((desactivar_servicios=fopen("clientes/servicios_clientes.dat","r+b"))!=NULL){
@@ -108,17 +93,12 @@ void estado_clientes(){
                                 
                                 fclose(desactivar_servicios);
                             }
-
-
-
-
                         printf("El cliente ha sido dado de baja exitosamente.\n");
                         fseek(archivo_contrato,sizeof(c_modificado)*(-1),SEEK_CUR);
                         fwrite(&c_modificado,sizeof(c_modificado),1,archivo_contrato);
                         fseek(archivo_contrato,sizeof(c_modificado),SEEK_END);
                     }
                 }
-            }
 
             fread(&c_modificado,sizeof(c_modificado),1,archivo_contrato);
         }
