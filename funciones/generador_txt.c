@@ -10,7 +10,6 @@
 
 void generador_txt(int id_persona)
 {
-    /*
     FILE *p;
     char nombre_contrato[40], numero_id[21];
     strcpy(nombre_contrato, "clientes/contratos_txt/contrato_");
@@ -47,7 +46,6 @@ void generador_txt(int id_persona)
         fclose(archivo_contrato);
         system("pause");
     }
-    */
 }
 
 
