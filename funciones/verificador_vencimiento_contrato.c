@@ -9,20 +9,21 @@
 #include"fecha.c"
 
 void verificador_vencimiento_contrato(){
-    int p_day,p_mont,p_year,finalizar=0,id_guardado,numero_contrato;
+    int p_day,p_mont,p_year,finalizar=0,finalizar2 = 0,id_guardado,numero_contrato;
     char nombre_contratos[30] = {"clientes/id_contratos.dat"};
 
     FILE *a_contrato;
     if((a_contrato=fopen("clientes/contratos.dat","a+b"))!=NULL){
         contratos revision;
         while(finalizar==0){
-                    rewind(a_contrato);
+                    //rewind(a_contrato);
                     fread(&revision,sizeof(revision),1,a_contrato);
                     while(!feof(a_contrato)){
                         finalizar=1;
 
                         if(revision.fecha_fin.day==day && revision.fecha_fin.mont==mont && revision.fecha_fin.year==year && revision.estado_contrato==1){
                             finalizar=0;
+                            finalizar2=0;
                             printf("Finalizar = 0 id_cliente = %d\n",revision.id);
                             revision.estado_contrato=0;
                             id_guardado=revision.id_contrato;
@@ -35,7 +36,9 @@ void verificador_vencimiento_contrato(){
                         fread(&revision,sizeof(revision),1,a_contrato);
                     }
 
-                if(finalizar==0){
+                if(finalizar2==0){
+                    finalizar = 1;
+                    finalizar2 = 1;
                     numero_contrato=0;
                     contratos check;
                     rewind(a_contrato);
@@ -60,6 +63,7 @@ void verificador_vencimiento_contrato(){
                         }
                         fread(&check,sizeof(check),1,a_contrato);
                     }
+                    printf("Estoy fuera del while\n");
                 }
 
             system("pause");
@@ -70,8 +74,8 @@ void verificador_vencimiento_contrato(){
 
 
 
-
-
+printf("Sistem Final\n");
+system("pause");
 }
 
 
