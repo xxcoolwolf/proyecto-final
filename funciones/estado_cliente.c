@@ -8,98 +8,89 @@
 
 
 void estado_clientes(){ 
-    /*
+    
     system("cls");
-    int id_cliente,dni_encontrado,seleccion=0,estado_cliente = 0;
+    int id_cliente,dni_encontrado,seleccion=0,eleccion_contrato;
     printf("Ingresar el ID del cliente: ");scanf("%d",&id_cliente);
-
-    FILE *busqueda_dni;
-    if((busqueda_dni=fopen("clientes/clientes.dat","rb"))!=NULL){
-        clientes busqueda_cliente;
-        fread(&busqueda_cliente,sizeof(busqueda_cliente),1,busqueda_dni);
-        while(!feof(busqueda_dni)){
-            
-            if(id_cliente == busqueda_cliente.id){
-                dni_encontrado = busqueda_cliente.dni;  
-                estado_cliente = busqueda_cliente.estado_cliente;
-            }
-            fread(&busqueda_cliente,sizeof(busqueda_cliente),1,busqueda_dni);
-        }
-        fclose(busqueda_dni);
-    }
+    // listar_contratos_de_cliente(id_cliente);//-----------------------------
+    // printf("Ingresar id del contrato deseado: ");scanf("%d",eleccion_contrato);//-----------------------------
+    
 
 
     FILE *archivo_contrato;
-    if((archivo_contrato=fopen("clientes/contratos.dat","r+b"))!=NULL){
-        contratos c_modificado;
+    if((archivo_contrato=fopen("clientes/clientes.dat","r+b"))!=NULL){
+        clientes c_modificado;
         fread(&c_modificado,sizeof(c_modificado),1,archivo_contrato);
         while(!feof(archivo_contrato)){
             
-            if(dni_encontrado == c_modificado.dni && estado_cliente == 1){
-                printf("1. Dar de Baja\n");
+            if(id_cliente == c_modificado.id){
+                printf("1. Dar de Baja Cliente\n");
+                printf("2. Dar de Baja Contrato\n");
                 printf("0. Atras\n");
                 scanf("%d",&seleccion);
+
                 if(seleccion == 1){
-                    if(c_modificado.estado_cliente == 0){
+                    if( c_modificado.estado_cliente == 0){
                         printf("Error: El cliente ya ha sido dado de baja anteriormente.\n");
                     }else{
                         c_modificado.estado_cliente = 0;
-                            FILE *desactivar_servicios;
-                                int finalizar=0;
-                            if((desactivar_servicios=fopen("clientes/servicios_clientes.dat","r+b"))!=NULL){
-                                servicios_clientes borrar_servicio;
-                                while(finalizar == 0){
-                                    rewind(desactivar_servicios);
-                                    fread(&borrar_servicio,sizeof(borrar_servicio),1,desactivar_servicios);
-                                    while(!feof(desactivar_servicios)){
-                                        finalizar=1;
-                                        printf("Finaliza = 1\n");
-                                        
-                                        if(borrar_servicio.dni == dni_encontrado && borrar_servicio.estado_servicio==1){
-                                            printf("Nombre = %s\n",borrar_servicio.nombre_servicio);
-                                            borrar_servicio.estado_servicio=0;
-                                            //como el servicio está desactivado, ha que descontar el precio al total
-                                            FILE *b_servicio;
-                                            if((b_servicio=fopen("servicios/servicios.dat","rb"))!=NULL){
-
-                                                servicios busqueda_servicio;
-                                                fread(&busqueda_servicio,sizeof(busqueda_servicio),1,b_servicio);
-                                                while(!feof(b_servicio)){
-
-                                                    if(busqueda_servicio.id == borrar_servicio.id_servicio){
-                                                        c_modificado.total=c_modificado.total-busqueda_servicio.precio;
-                                                    }
-
-                                                    fread(&busqueda_servicio,sizeof(busqueda_servicio),1,b_servicio);
-                                                }
-
-                                                fclose(b_servicio);
-                                            }
-
-
-                                            finalizar=0;
-                                            printf("Finaliza = 0\n");
-                                            fseek(desactivar_servicios,sizeof(borrar_servicio)*(-1),SEEK_CUR);
-                                            fwrite(&borrar_servicio,sizeof(borrar_servicio),1,desactivar_servicios);
-                                            fseek(desactivar_servicios,sizeof(borrar_servicio),SEEK_END);
-                                        }
-                                        
-                                        printf("HOLLLAAAAAAAA\n");
-                                        fread(&borrar_servicio,sizeof(borrar_servicio),1,desactivar_servicios);	
+                        //dar de baja todos los contratos
+                        FILE *modificar_contrato;
+                        if((modificar_contrato=fopen("clientes/contratos.dat","r+b"))!=NULL){
+                            int finalizar=0;
+                            contratos borrar_contrato;
+                            while(finalizar==0){
+                                rewind(modificar_contrato);
+                                fread(&borrar_contrato,sizeof(borrar_contrato),1,modificar_contrato);
+                                while(!feof(modificar_contrato)){
+                                    finalizar=1;
+                                    if(borrar_contrato.id==id_cliente && borrar_contrato.estado_contrato==1){
+                                        borrar_contrato.estado_contrato=0;
+                                        finalizar=0;
+                                        fseek(modificar_contrato,sizeof(borrar_contrato)*(-1),SEEK_CUR);
+                                        fwrite(&borrar_contrato,sizeof(borrar_contrato),1,modificar_contrato);
+                                        fseek(modificar_contrato,sizeof(borrar_contrato),SEEK_END);
                                     }
-                                    printf("Fuera while2\n");
-                                    system("pause");
+
+                                    fread(&borrar_contrato,sizeof(borrar_contrato),1,modificar_contrato);
                                 }
-                                
-                                
-                                fclose(desactivar_servicios);
+
                             }
+                            fclose(modificar_contrato);
+                        }
+
+
+                        //fin dar de baja todos los contratos
                         printf("El cliente ha sido dado de baja exitosamente.\n");
                         fseek(archivo_contrato,sizeof(c_modificado)*(-1),SEEK_CUR);
                         fwrite(&c_modificado,sizeof(c_modificado),1,archivo_contrato);
                         fseek(archivo_contrato,sizeof(c_modificado),SEEK_END);
                     }
+                }else if(seleccion == 2){
+                    listar_contratos_de_cliente(id_cliente);//-----------------------------
+                    printf("Ingresar id del contrato deseado: ");scanf("%d",&eleccion_contrato);//-----------------------------
+                    FILE *eliminar_contrato;
+                    printf("1HOLLAAAAAAA\n");
+                    if((eliminar_contrato=fopen("clientes/contratos.dat","r+b"))!=NULL){
+                        contratos eliminar_c;
+                        printf("2HOLLAAAAAAA\n");
+                        fread(&eliminar_c,sizeof(eliminar_c),1,eliminar_contrato);
+                        while(!feof(eliminar_contrato)){
+                            printf("3HOLLAAAAAAA\n");
+                            if(eliminar_c.estado_contrato==1 && eleccion_contrato==eliminar_c.id_contrato){
+                                printf("4HOLLAAAAAAA\n");
+                                eliminar_c.estado_contrato=0;
+                                fseek(eliminar_contrato,sizeof(eliminar_c)*(-1),SEEK_CUR);
+                                fwrite(&eliminar_c,sizeof(eliminar_c),1,eliminar_contrato);
+                                fseek(eliminar_contrato,sizeof(eliminar_c),SEEK_END);
+                            }
+                            fread(&eliminar_c,sizeof(eliminar_c),1,eliminar_contrato);
+                        }
+                        fclose(eliminar_contrato);
+                        printf("5HOLLAAAAAAA\n");
+                    }
                 }
+            }
 
             fread(&c_modificado,sizeof(c_modificado),1,archivo_contrato);
         }
@@ -109,7 +100,7 @@ void estado_clientes(){
         fclose(archivo_contrato);
         system("pause");
     }
-    */
+    
 }
 
 #endif //ESTADO_CLIENTE_C
