@@ -1,7 +1,0 @@
-ID = 2
-ID Contrato = 2
-Fecha Firma = 14/11/2021
-Fecha Fin = 14/5/2022
-Total = 4000.00
-Descuento = 800.00
-Estado Cliente = 1

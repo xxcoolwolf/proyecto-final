@@ -14,7 +14,7 @@ void listar_contratos_de_cliente(int id_cliente) {
         fread(&e_contratos,sizeof(contratos),1,ap_contratos);
         while(!feof(ap_contratos)) {
             if(id_cliente == e_contratos.id && e_contratos.estado_contrato == 1) {
-                printf("%-5d | %d/%d/%-10d | %d/%d/%-10d | $%-5.2f | %-5d\n",e_contratos.id_contrato,e_contratos.fecha_firma.day,e_contratos.fecha_firma.mont,e_contratos.fecha_firma.year,e_contratos.fecha_fin.day,e_contratos.fecha_fin.mont,e_contratos.fecha_fin.year,e_contratos.total-e_contratos.descuento,e_contratos.estado_factura);
+                printf("%-5d | %d/%d/%-10d | %d/%d/%-10d | $%-10.2f | %-10d\n",e_contratos.id_contrato,e_contratos.fecha_firma.day,e_contratos.fecha_firma.mont,e_contratos.fecha_firma.year,e_contratos.fecha_fin.day,e_contratos.fecha_fin.mont,e_contratos.fecha_fin.year,e_contratos.total-e_contratos.descuento,e_contratos.estado_factura);
             }
             //volvemos a leer para evitar bucle
             fread(&e_contratos,sizeof(contratos),1,ap_contratos);
@@ -24,7 +24,6 @@ void listar_contratos_de_cliente(int id_cliente) {
     }
     else
         printf("Error en la apertura de contratos.dat\n");
-    system("pause");
 }
 
 #endif //LISTAR_CONTRATOS_DE_CLIENTE_C

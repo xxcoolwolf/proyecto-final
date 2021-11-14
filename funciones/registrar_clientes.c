@@ -64,23 +64,6 @@ void registrar_clientes() {
                 //Luego de este else, se utilizara el dni
                 carga_clientes.dni = dni_cliente_global;
             }
-            printf("Seleccione un Servicio\n");
-            //llamamos a una funcion para solicitar la seleccion de los servicios
-            seleccionar_servicio(&total_pagar,carga_clientes.dni);
-            //ahora cargamos ese total en el registro del cliente
-            //verificamos que se hayan seleccionado servicios, ya que si nungun servicio ha sido
-            //seleccionado, no se registra al cliente
-            if(total_pagar != 0) {
-                if(centinela_global == 0) { //verificamos la variable global por si se esta reutilizando solo algunas partes de la funcion
-                    //generamos id
-                    generador_id(&id,nombre_archivo);
-                }
-                else
-                {
-                    id = id_cliente_global;
-                }
-                //cargamos el id en el struct
-                carga_clientes.id = id;
 //--------------------------------- GENERAR CONTRATO --------------------------------- //
                 //declaramos un id de contrato
                 int id_contrato = 0; 
@@ -90,6 +73,23 @@ void registrar_clientes() {
                     //llamamos a la funcion de generacion de contratos
                     generador_id(&id_contrato,nombre_contratos);
                     id_cliente_contrato_global = id_contrato;
+                printf("Seleccione un Servicio\n");
+                //llamamos a una funcion para solicitar la seleccion de los servicios
+                seleccionar_servicio(&total_pagar,carga_clientes.dni,id_contrato);
+                //ahora cargamos ese total en el registro del cliente
+                //verificamos que se hayan seleccionado servicios, ya que si nungun servicio ha sido
+                //seleccionado, no se registra al cliente
+                if(total_pagar != 0) {
+                    if(centinela_global == 0) { //verificamos la variable global por si se esta reutilizando solo algunas partes de la funcion
+                        //generamos id
+                        generador_id(&id,nombre_archivo);
+                    }
+                else
+                    {
+                        id = id_cliente_global;
+                    }
+                //cargamos el id en el struct
+                carga_clientes.id = id;
                     //definimos a la estructura de contratos
                     contratos carga_contratos;
                     //procedemos a guardar los datos del cliente en contratos

@@ -10,7 +10,7 @@
 
 //seleccionar servicios
 
-void seleccionar_servicio(int *total_pagar,int dni) {
+void seleccionar_servicio(int *total_pagar,int dni,int id_contrato) {
     FILE *archivo,*verificacion,*cambiar_total;
     int servicio_seleccionado,centinela=0;
     servicios carga_servicios;
@@ -29,12 +29,12 @@ void seleccionar_servicio(int *total_pagar,int dni) {
                 centinela=0;
                 while(!feof(verificacion)){
                     //si tanto el id del servicio es igual al seleccionado, el dni de la persona coincida con el dni almacenado en el servicio y el estado del servicio sea activo (1). Entra
-                    if(servicio_seleccionado==busqueda_servicio.id_servicio && dni==busqueda_servicio.dni && busqueda_servicio.estado_servicio==1){
+                    if(servicio_seleccionado == busqueda_servicio.id_servicio && dni == busqueda_servicio.dni && busqueda_servicio.estado_servicio==1 && busqueda_servicio.id_contrato == id_contrato){
                         printf("Actualmente el servicio con id %d ya se encuentra seleccionado por el cliente.\n",busqueda_servicio.id_servicio);
                         centinela=1;
                         system("pause");
                         //si tanto el id del servicio es igual al seleccionado, el dni de la persona coincida con el dni almacenado en el servicio y el estado del servicio sea inactivo (0). Entra
-                    }else if(servicio_seleccionado==busqueda_servicio.id_servicio && dni==busqueda_servicio.dni && busqueda_servicio.estado_servicio==0){
+                    }else if(servicio_seleccionado == busqueda_servicio.id_servicio && dni == busqueda_servicio.dni && busqueda_servicio.estado_servicio==0 && busqueda_servicio.id_contrato == id_contrato){
                         printf("Nombre: %s\n",busqueda_servicio.nombre_servicio);
                         // reactivamos el serivcio
                         busqueda_servicio.estado_servicio=1;
@@ -46,11 +46,11 @@ void seleccionar_servicio(int *total_pagar,int dni) {
                         fseek(verificacion,sizeof(busqueda_servicio),SEEK_END);
                         printf("Servicio reactivado\n");
                         ////////////////////////////AUMENTAR EL TOTAL/////////////////////////////////
-                        if((cambiar_total=fopen("servicios/servicios.dat","rb"))!=NULL){
+                        if((cambiar_total = fopen("servicios/servicios.dat","rb"))!=NULL){
                             servicios servicio_buscado;
                             fread(&servicio_buscado,sizeof(servicio_buscado),1,cambiar_total);
                             while(!feof(cambiar_total)){
-                                if(servicio_buscado.id==servicio_seleccionado){
+                                if(servicio_buscado.id == servicio_seleccionado){
                                     *total_pagar = *total_pagar + servicio_buscado.precio;
                                 }
                                 fread(&servicio_buscado,sizeof(servicio_buscado),1,cambiar_total);
@@ -67,12 +67,6 @@ void seleccionar_servicio(int *total_pagar,int dni) {
                 }
             }
             /////////////////FIN VERIFICACION DE LA EXISTENCIA DEL ID SELECCIONADO////////////////////////
-
-
-
-
-
-
 
         if(centinela==0){
             //abrimos el archivo servicios.dat
@@ -99,6 +93,9 @@ void seleccionar_servicio(int *total_pagar,int dni) {
                                 
                                 //----------------------------- guaramos el precio del servicio
                                 guardar_servicios.precio = carga_servicios.precio;
+
+                                //----------------------------- guaramos el id del contrato
+                                guardar_servicios.id_contrato = id_contrato;
 
                                 //--------------------- Guardamos la fecha de contratacion
                                 guardar_servicios.fecha_alta.day = day;

@@ -8,7 +8,7 @@ void registrar_servicios();
 void listar_servicios(int);
 void detalles_cliente(int,int);
 void generador_id(int *,char *);
-void seleccionar_servicio();
+void seleccionar_servicio(int *,int,int);
 void verificacion_dni();
 void modificar_clientes(int);
 void modificar_servicios();
