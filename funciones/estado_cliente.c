@@ -70,15 +70,15 @@ void estado_clientes(){
                     listar_contratos_de_cliente(id_cliente);//-----------------------------
                     printf("Ingresar id del contrato deseado: ");scanf("%d",&eleccion_contrato);//-----------------------------
                     FILE *eliminar_contrato;
-                    printf("1HOLLAAAAAAA\n");
+                    //printf("1HOLLAAAAAAA\n");
                     if((eliminar_contrato=fopen("clientes/contratos.dat","r+b"))!=NULL){
                         contratos eliminar_c;
-                        printf("2HOLLAAAAAAA\n");
+                        //printf("2HOLLAAAAAAA\n");
                         fread(&eliminar_c,sizeof(eliminar_c),1,eliminar_contrato);
                         while(!feof(eliminar_contrato)){
-                            printf("3HOLLAAAAAAA\n");
+                            //printf("3HOLLAAAAAAA\n");
                             if(eliminar_c.estado_contrato==1 && eleccion_contrato==eliminar_c.id_contrato){
-                                printf("4HOLLAAAAAAA\n");
+                                //printf("4HOLLAAAAAAA\n");
                                 eliminar_c.estado_contrato=0;
                                 fseek(eliminar_contrato,sizeof(eliminar_c)*(-1),SEEK_CUR);
                                 fwrite(&eliminar_c,sizeof(eliminar_c),1,eliminar_contrato);
@@ -87,7 +87,7 @@ void estado_clientes(){
                             fread(&eliminar_c,sizeof(eliminar_c),1,eliminar_contrato);
                         }
                         fclose(eliminar_contrato);
-                        printf("5HOLLAAAAAAA\n");
+                        //printf("5HOLLAAAAAAA\n");
                     }
                 }
             }
